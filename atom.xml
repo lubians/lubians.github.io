@@ -42,6 +42,30 @@
   </entry>
   
   <entry>
+    <title>About Me</title>
+    <link href="https://lubians.github.io/2019/about/"/>
+    <id>https://lubians.github.io/2019/about/</id>
+    <published>2019-12-02T13:37:04.000Z</published>
+    <updated>2020-01-10T18:47:21.336Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>A Coder, live in Hangzhou, China.</p></blockquote><p>GitHub: <a href="https://github.com/lubians" target="_blank" rel="noopener">lubians</a><br>Email: <a href="mailto:ftongyu@qq.com">ftongyu@qq.com</a><br>QQ: <a href="http://wpa.qq.com/msgrd?v=3&uin=373073314&site=qq&menu=yes" target="_blank" rel="noopener">373073314</a><br>微信: jiangdajien</p><a id="more"></a><!-- ![avatar.jpg](https://i.loli.net/2019/12/02/Hw5WJIMKzi1YrU8.jpg) -->]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;A Coder, live in Hangzhou, China.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;GitHub: &lt;a href=&quot;https://github.com/lubians&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;lubians&lt;/a&gt;&lt;br&gt;Email: &lt;a href=&quot;mailto:ftongyu@qq.com&quot;&gt;ftongyu@qq.com&lt;/a&gt;&lt;br&gt;QQ: &lt;a href=&quot;http://wpa.qq.com/msgrd?v=3&amp;uin=373073314&amp;site=qq&amp;menu=yes&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;373073314&lt;/a&gt;&lt;br&gt;微信: jiangdajien&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="随笔" scheme="https://lubians.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="https://lubians.github.io/2019/lubians/"/>
     <id>https://lubians.github.io/2019/lubians/</id>
