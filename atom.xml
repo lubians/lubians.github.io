@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>鲁边</title>
-  
+  <icon>https://www.gravatar.com/avatar/dd3468b3e023bc9383143ba2873a8315</icon>
   <subtitle>昨天,今天,明天</subtitle>
   <link href="/atom.xml" rel="self"/>
   
@@ -11,7 +11,7 @@
   
   <author>
     <name>lubians</name>
-    
+    <email>ftongyu@qq.com</email>
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
