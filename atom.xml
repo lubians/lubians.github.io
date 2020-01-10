@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lubians.github.io/"/>
-  <updated>2020-01-10T14:28:18.920Z</updated>
+  <updated>2020-01-10T14:24:14.341Z</updated>
   <id>https://lubians.github.io/</id>
   
   <author>
@@ -17,32 +17,9 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>didi</title>
-    <link href="https://lubians.github.io/2020/ck58e9y3h00052ctkdz697iln/"/>
-    <id>https://lubians.github.io/2020/ck58e9y3h00052ctkdz697iln/</id>
-    <published>2020-01-10T14:27:21.735Z</published>
-    <updated>2020-01-10T14:28:18.920Z</updated>
-    
-    <content type="html"><![CDATA[<h5 id="王晓东"><a href="#王晓东" class="headerlink" title="王晓东"></a>王晓东</h5><p>身高八尺有余</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h5 id=&quot;王晓东&quot;&gt;&lt;a href=&quot;#王晓东&quot; class=&quot;headerlink&quot; title=&quot;王晓东&quot;&gt;&lt;/a&gt;王晓东&lt;/h5&gt;&lt;p&gt;身高八尺有余&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>Hello World</title>
-    <link href="https://lubians.github.io/2020/ck58e9y3d00022ctk0dsq8w8j/"/>
-    <id>https://lubians.github.io/2020/ck58e9y3d00022ctk0dsq8w8j/</id>
+    <link href="https://lubians.github.io/2020/ck58eqv5q0002lwtk1opb71s5/"/>
+    <id>https://lubians.github.io/2020/ck58eqv5q0002lwtk1opb71s5/</id>
     <published>2020-01-10T14:24:14.341Z</published>
     <updated>2020-01-10T14:24:14.341Z</updated>
     
@@ -58,6 +35,31 @@
     </summary>
     
     
+    
+  </entry>
+  
+  <entry>
+    <title>个人简介</title>
+    <link href="https://lubians.github.io/2019/lubians/"/>
+    <id>https://lubians.github.io/2019/lubians/</id>
+    <published>2019-12-03T05:26:02.000Z</published>
+    <updated>2020-01-10T17:00:58.761Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="王晓东"><a href="#王晓东" class="headerlink" title="王晓东"></a>王晓东</h5><p>身高八尺有余</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;王晓东&quot;&gt;&lt;a href=&quot;#王晓东&quot; class=&quot;headerlink&quot; title=&quot;王晓东&quot;&gt;&lt;/a&gt;王晓东&lt;/h5&gt;&lt;p&gt;身高八尺有余&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+      <category term="随笔" scheme="https://lubians.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
