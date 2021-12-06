@@ -15,7 +15,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title> 鲁边</title>
+      <title>Hello World |  鲁边</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -55,27 +55,39 @@
   <div id="app">
     
       
+
+	<!-- �������� -->
     <main class="content on">
       <section class="outer">
   <article
-  id="post-大数据技术栈详解"
+  id="post-hello-world"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
   data-scroll-reveal
 >
   <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Hello World
+</h1>
+ 
+
+      
+    </header>
      
     <div class="article-meta">
-      <a href="/2021/12/ckwuhgjyj000nxgjdcim44nnr/" class="article-date">
-  <time datetime="2021-12-06T08:04:33.798Z" itemprop="datePublished">2021-12-06</time>
+      <a href="/2021/12/ckwumlfts000h8ojdf5967nzg/" class="article-date">
+  <time datetime="2021-12-06T07:43:26.262Z" itemprop="datePublished">2021-12-06</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.2k</span>
+            <span class="post-count">75</span>
         </span>
     </span>
 
@@ -84,7 +96,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">4 min</span>
+            <span class="post-count">1 min</span>
         </span>
     </span>
 </div>
@@ -99,36 +111,19 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>大数据技术栈详解</p>
-<h3 id="一-技术栈结构"><a href="#一-技术栈结构" class="headerlink" title="一.技术栈结构"></a>一.技术栈结构</h3><p><img src="E:\博客图片\大数据技术栈\大数据技术栈.jpg" alt="大数据技术栈"></p>
-<h3 id="二-Hadoop"><a href="#二-Hadoop" class="headerlink" title="二.Hadoop"></a>二.Hadoop</h3><h4 id="1-广义Hadoop"><a href="#1-广义Hadoop" class="headerlink" title="1.广义Hadoop"></a>1.广义Hadoop</h4><p>Hadoop在广义上来说是Hadoop生态圈,包含大量用于大数据存储,管理,传输,分析计算的框架.框架描述如下图:</p>
-<p><img src="E:\博客图片\大数据技术栈\15883010-44e5e07f7bf214f2.png" alt="15883010-44e5e07f7bf214f2"></p>
-<h4 id="2-狭义Hadoop"><a href="#2-狭义Hadoop" class="headerlink" title="2.狭义Hadoop"></a>2.狭义Hadoop</h4><p>狭义上的Hadoop是一个Apache下开源的分布式系统基础框架,主要解决海量数据的存储和分析计算问题.</p>
-<p>Hadoop的组成:</p>
-<p><img src="E:\博客图片\大数据技术栈\Hadoop.png" alt="Hadoop"></p>
-<h5 id="2-1-HDFS"><a href="#2-1-HDFS" class="headerlink" title="2.1.HDFS"></a>2.1.HDFS</h5><p>Hadoop实现了一个分布式文件系统(Hadoop Distributed File System),简称HDFS.</p>
-<p>Hadoop分布式文件系统(HDFS)被设计成适合运行在通用硬件(commodity hardware)上的分布式文件系统.它和现有的分布式文件系统有很多共同点.但同时,它和其他的分布式文件系统的区别也是很明显的.</p>
-<p>HDFS是一个高度容错性的系统,适合部署在廉价的机器上.HDFS能提供高吞吐量的数据访问,非常适合大规模数据集上的应用.HDFS放宽了(relax)POSIX(可移植操作系统接口 Portable Operating System Interface of UNIX)的要求,可以以流的形式访问(Streaming access)文件系统中的数据.</p>
-<p>HDFS在最开始是作为Apache Nutch搜索引擎项目的基础架构而开发的,是Apache Hadoop Core项目的一部分.HDFS有着高容错性(fault-tolerant)的特点,并且设计用来部署在低廉的(low-cost)硬件上;而且它提供高吞吐量(high throughput)来访问应用程序的数据,适合那些有这超大数据集(large data set)的应用程序.</p>
-<h5 id="2-2-MapReduce"><a href="#2-2-MapReduce" class="headerlink" title="2.2.MapReduce"></a>2.2.MapReduce</h5><p>MapReduce是一种编程模型,其理论来自Google公司发表的三篇论文(<strong>MapReduce,BigTable,GFS</strong>)之一,主要应用于海量数据的并行计算.</p>
-<p>MapReduce可以分成<strong>Map</strong>和<strong>Reduce</strong>两部分理解.</p>
-<p>Map:映射过程,把一组数据按照某种Map函数映射成新的数据.</p>
-<p>Reduce:归约过程,把若干组映射结果进行汇总并输出.</p>
-<p>Hadoop实现了Google的MapReduce编程模型和框架,能够把应用程序分割成许多的小的工作单元,并把这些单元放到任何集群节点上执行.</p>
-<p>MapReduce是Hadoop中的一个数据运算核心模块,MapReduce通过JobClient生成任务运行文件,并在JobTracker进行调度指派TaskTracker完成任务.</p>
-<p><img src="E:\博客图片\大数据技术栈\0b55b319ebc4b745ba5d74f7c1fc1e178b821502.png" alt="0b55b319ebc4b745ba5d74f7c1fc1e178b821502"></p>
-<h5 id="2-3-Yarn"><a href="#2-3-Yarn" class="headerlink" title="2.3.Yarn"></a>2.3.Yarn</h5><p>YARN是一个资源调度平台,负责为运算程序提供服务器运算资源,相当于一个分布式的操作系统平台,而MapReduce等运算程序则相当于运行于操作系统之上的应用程序.</p>
-<p>　　YARN是Hadoop2.x版本中的一个新特性.它的出现其实是为了解决第一代MapReduce编程框架的不足,提高集群环境下的资源利用率,这些资源包括内存,磁盘,网络,IO等.Hadoop2.X 版本中重新设计的这个YARN集群,具有更好的扩展性,可用性,可靠性,向后兼容性,以 及能支持除MapReduce以外的更多分布式计算程序.</p>
-<p>Yarn的特点</p>
-<p>1.Yarn并不清楚用户提交的程序的运行机制.</p>
-<p>2.Yarn只提供运算资源的调度(用户程序向Yarn申请资源,Yarn就负责分配资源).</p>
-<p>3.Yarn中的主管角色叫ResourceManager.</p>
-<p>4.Yarn中具体提供运算资源的角色叫NodeManager.</p>
-<p>5.这样一来,Yarn其实就与运行的用户程序完全解耦,就意味着Yarn上可以运行各种类型的分布式运算程序(MapReduce只是其中的一种),比如MapReduce,Storm程序,Spark程序,Tez……</p>
-<p>6.Spark,Storm,Flink等运算框架都可以整合在Yarn上运行,只要他们各自框架中有符合Yarn规范的资源请求机制即可.</p>
-<p>7.Yarn就成为一个通用的资源调度平台,从此,企业中以前存在的各种运算集群都可以整合在一个物理集群上,提高资源利用率,方便数据共享.</p>
-<h3 id="三-集群管理"><a href="#三-集群管理" class="headerlink" title="三.集群管理"></a>三.集群管理</h3><h4 id="1-Ambari集群管理工具"><a href="#1-Ambari集群管理工具" class="headerlink" title="1.Ambari集群管理工具"></a>1.Ambari集群管理工具</h4><p>Apache Ambari是一种基于Web的工具,支持Apache Hadoop集群的创建,管理和监控.Ambari已支持大多数Hadoop组件,包括HDFS,MapReduce,Hive,Pig, Hbase,Zookeeper,Sqoop和Hcatalog等.用一句话来说,Ambari就是为了让Hadoop以及相关的大数据软件更容易使用的一个工具.</p>
-<p>Ambari 自身也是一个分布式架构的软件,主要由两部分组成:Ambari Server 和 Ambari Agent.简单来说,用户通过 Ambari Server 通知 Ambari Agent 安装对应的软件:Agent会定时地发送各个机器每个软件模块的状态给 Ambari Server,最终这些状态信息会呈现在 Ambari 的 GUI,方便用户了解到集群的各种状态,并进行相应的维护.</p>
+  <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
  
       <!-- reward -->
       
@@ -199,7 +194,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://lubians.github.io/2021/12/ckwuhgjyj000nxgjdcim44nnr/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://lubians.github.io/2021/12/ckwumlfts000h8ojdf5967nzg/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -210,10 +205,19 @@
    
   <nav class="article-nav">
     
+      <a href="/2021/12/ckwumlftu000n8ojd1nkddmx6/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            (no title)
+          
+        </div>
+      </a>
     
-      <a href="/2021/12/ckwuhgjyh000hxgjdg87lacgc/" class="article-nav-link">
+    
+      <a href="/2020/01/oozieUse2/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Hello World</div>
+        <div class="article-nav-title">安装oozie的web界面无法访问问题</div>
       </a>
     
   </nav>
