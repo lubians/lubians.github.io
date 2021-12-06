@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-Hans">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="Hadoop,Hadoop生态圈,Java,Hive,Sqoop,Oozie,Yarn,Flume,HDFS,SqlServer,大数据,一线,数据仓库,数据建模,编程,代码,开源,IT网站,Developer,Programmer,Coder,数据分析,Spark,Kafka,Hbase,Phoenix,ES,Linux,IT技术博客,Java,Python," />
+       
+      <meta name="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题 |  鲁边</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-手抖把Python2.7卸载了,导致了自己的yum不可用以及yum因python版本无法使用的问题"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/01/UploadPy2andyum/" class="article-date">
+  <time datetime="2020-01-13T10:37:04.000Z" itemprop="datePublished">2020-01-13</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">6 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>摘要:</strong></p>
+<p>从标题就能看到我有多心如死灰了,简单介绍下我是如何自残的过程.</p>
+<p>①首先因为需要部署爬虫程序,然后安装Python3.</p>
+<p>②Python3系列和Python2系列版本不向下兼容,所以我就卸载了机器自带的Python2.7,删的干干净净.</p>
+<p>③然后我下载了Python3.8的包.</p>
+<p>④我开始使用yum命令安装Python3.8的相关依赖.</p>
+<p>⑤结果是发现yum不可用了,如下报错信息</p>
+<span id="more"></span>
+
+
+
+<p><img src="https://i.loli.net/2020/01/14/MAYCzBHr5gcZjNn.png" alt="2019062019501228.png"><br>网上找的截图,大概类似,服务器问题已经处理好了,不可能再删一次!_!</p>
+<p>看到问题提示才知道是自己给自己挖了一个坑,心情一度灰暗到连晚饭都不想吃,最后?最后我就去聚餐去了,哈哈哈.</p>
+<h4 id="一-面临问题"><a href="#一-面临问题" class="headerlink" title="一.面临问题"></a>一.面临问题</h4><p>因为卸载了Python2.7不仅是yum不可用了,我的ambari集群的那台机器也一度陷入了瘫痪之中,web界面一片飘红,当时我有想通过命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /*</span><br></pre></td></tr></table></figure>
+
+<p>删了那个机器的冲动.简单点说,面临的问题就是要回复原来的状态.</p>
+<p>整个思路是这样的,没有了Python2.7,我就需先把Linux服务器依赖的Python2.7的包重新安装上,再看有没有其他问题,如果没有,好万事大吉,如果有,再看提示,开始干活.</p>
+<p><strong>该处理过程也适用于 yum因python版本无法使用的问题,不同的版本类型的机器,切记把机器版本号替换一下就可以了.</strong></p>
+<h4 id="二-检查是否删除彻底"><a href="#二-检查是否删除彻底" class="headerlink" title="二.检查是否删除彻底"></a>二.检查是否删除彻底</h4><h5 id="2-1-检查Python2-7是否卸载干净了"><a href="#2-1-检查Python2-7是否卸载干净了" class="headerlink" title="2.1.检查Python2.7是否卸载干净了"></a>2.1.检查Python2.7是否卸载干净了</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">卸载python</span></span><br><span class="line">rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#删除所有残余文件</span></span></span><br><span class="line">whereis python |xargs rm -frv   </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#验证删除，返回无结果</span></span></span><br><span class="line">whereis python </span><br></pre></td></tr></table></figure>
+
+<h5 id="2-2-删除现有的yum"><a href="#2-2-删除现有的yum" class="headerlink" title="2.2.删除现有的yum"></a>2.2.删除现有的yum</h5><p>不可用了就先删掉,以防依赖出错</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">删除yum</span></span><br><span class="line">rpm -qa|grep yum|xargs rpm -ev --allmatches --nodeps </span><br><span class="line"><span class="meta">#</span><span class="bash">删除残留文件</span></span><br><span class="line">whereis yum |xargs rm -frv </span><br><span class="line"><span class="meta">#</span><span class="bash">验证删除完成,返回无结果</span></span><br><span class="line">whereis yum </span><br></pre></td></tr></table></figure>
+
+<h4 id="三-下载安装恢复"><a href="#三-下载安装恢复" class="headerlink" title="三.下载安装恢复"></a>三.下载安装恢复</h4><h5 id="3-1-查看linux版本"><a href="#3-1-查看linux版本" class="headerlink" title="3.1.查看linux版本"></a>3.1.查看linux版本</h5><p>安装Python2.7的依赖包,就要找到Linux的版本号,经查我的版本号是:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">命令</span></span><br><span class="line">cat /etc/redhat-release</span><br><span class="line"><span class="meta">#</span><span class="bash">版本号</span></span><br><span class="line">CentOS Linux release 7.4.1708</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-2-在官方网站找到对应的包"><a href="#3-2-在官方网站找到对应的包" class="headerlink" title="3.2.在官方网站找到对应的包"></a>3.2.在官方网站找到对应的包</h5><p>查到版本号之后我就需要从官方网站(<strong>小红帽,这里注意你的CentOS是哪个厂家的</strong>)查找所依赖的几个指定包.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">官方网站</span></span><br><span class="line">http://vault.centos.org</span><br><span class="line"><span class="meta">#</span><span class="bash">我的版本号的官方网站http://vault.centos.org/7.4.1708/os/x86_64/Packages/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">如下7个包</span></span><br><span class="line">python-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">python-devel-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">python-iniparse-0.4-9.el7.noarch.rpm  </span><br><span class="line">python-pycurl-7.19.0-19.el7.x86_64.rpm   </span><br><span class="line">rpm-python-4.11.3-25.el7.x86_64.rpmpython-devel-2.7.5-58.el7.x86_64.rpm  </span><br><span class="line">python-libs-2.7.5-58.el7.x86_64.rpm   </span><br><span class="line">python-urlgrabber-3.10-8.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-3-下载安装Python包"><a href="#3-3-下载安装Python包" class="headerlink" title="3.3.下载安装Python包"></a>3.3.下载安装Python包</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> python安装</span></span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-devel-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-iniparse-0.4-9.el7.noarch.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-libs-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-pycurl-7.19.0-19.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-urlgrabber-3.10-8.el7.noarch.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/rpm-python-4.11.3-25.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-4-安装指定的yum包"><a href="#3-4-安装指定的yum包" class="headerlink" title="3.4.安装指定的yum包"></a>3.4.安装指定的yum包</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum安装</span></span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-3.4.3-154.el7.centos.noarch.rpm </span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm </span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.31-42.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<h4 id="四-收尾工作"><a href="#四-收尾工作" class="headerlink" title="四.收尾工作"></a>四.收尾工作</h4><h5 id="4-1-测试是否成功"><a href="#4-1-测试是否成功" class="headerlink" title="4.1.测试是否成功"></a>4.1.测试是否成功</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">验证python</span></span><br><span class="line">python</span><br><span class="line"><span class="meta">#</span><span class="bash">验证yum</span></span><br><span class="line">yum</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-2-总结"><a href="#4-2-总结" class="headerlink" title="4.2.总结"></a>4.2.总结</h5><p>这个故事告诉我们： </p>
+<p>① 在不懂的领域要多阅读相关资料,不要一开始就直接上。</p>
+<p>② 解决问题思路要清晰。</p>
+<h3 id="五-Python3一定要装"><a href="#五-Python3一定要装" class="headerlink" title="五.Python3一定要装"></a>五.Python3一定要装</h3><p>在不卸载Python2版本的同时使用Python3.*</p>
+<p>环境:  centos7.4</p>
+<p>版本：python3.8</p>
+<h5 id="5-1-依赖包安装"><a href="#5-1-依赖包安装" class="headerlink" title="5.1.依赖包安装"></a>5.1.依赖包安装</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-2-下载包："><a href="#5-2-下载包：" class="headerlink" title="5.2.下载包："></a>5.2.下载包：</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载路径(里面有不同的版本)https://www.python.org/ftp/python/3.8.0/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">下载命令</span></span><br><span class="line">wget https://www.python.org/ftp/python/3.8.0/Python-3.8.tgz</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-3-解压："><a href="#5-3-解压：" class="headerlink" title="5.3.解压："></a>5.3.解压：</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Python-3.8.0.tgz</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-4-安装："><a href="#5-4-安装：" class="headerlink" title="5.4.安装："></a>5.4.安装：</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd Python-3.8.0</span><br><span class="line"><span class="meta">#</span><span class="bash">指定编译目录</span></span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line"><span class="meta">#</span><span class="bash">编译安装</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-5-建立软连接"><a href="#5-5-建立软连接" class="headerlink" title="5.5.建立软连接"></a>5.5.建立软连接</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3</span><br><span class="line">ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-6-测试一下python3是否可以用"><a href="#5-6-测试一下python3是否可以用" class="headerlink" title="5.6.测试一下python3是否可以用"></a>5.6.测试一下python3是否可以用</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3</span><br><span class="line">pip3</span><br></pre></td></tr></table></figure>
+
+<h4 id="六-日常废话"><a href="#六-日常废话" class="headerlink" title="六.日常废话"></a>六.日常废话</h4><p>今天面临这个问题类似于一个新手问题,但是在很多时候,自己不了解的情况下反而容易出这种问题.</p>
+<p>那么就简单说说我们遇到相关的问题的一个解决思路吧.</p>
+<p>①遇到了什么问题,先定位问题是什么.</p>
+<p>②这个问题之前我们做了什么操作引起的相关问题,因为什么导致了这个问题出现.</p>
+<p>③这个问题的报错信息是什么?</p>
+<p>④结合②和③找出针对性解决方案,往往更多的时候都是一步步的试错过程.</p>
+<p>⑤按出的解决方案进行问题处理.</p>
+<p>这就类似于为什么,怎么办,处理结果三个步骤.慌乱或者无头苍蝇一样直接把现象抛出来反而是解决问题最慢的方式.</p>
+<p>形成以上这种思维能更好的帮助自己处理实际工作中的问题.</p>
+<p><strong>我是鲁边,2020 peace and love.</strong></p>
+<p>按例，我的个人公众号：鲁边社，欢迎关注(后台回复 [<strong>机器学习</strong>] ,获取相关学习笔记)</p>
+<p><img src="https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg" alt="avatar"></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          Donate
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://lubians.github.io/2020/01/UploadPy2andyum/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python2/" rel="tag">Python2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python3/" rel="tag">Python3</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/01/LinuxInstallPython3/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Linux下Python3的安装
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/01/blogcreate/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">0成本搭建个人技术博客和个人网站</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2021
+        <i class="ri-heart-fill heart_icon"></i> lubians
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="鲁边"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">目录</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/01/about/">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
