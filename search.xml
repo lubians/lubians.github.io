@@ -1,116 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>安装oozie的web界面无法访问问题</title>
-    <url>/2020/01/oozieUse2/</url>
-    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言:"></a>前言:</h4><p>我用的是Ambari管理集群<br><strong>其他集群管理工具安装oozie和手动编译安装oozie,关于oozie的UI界面无法访问的问题,大致和该方法类似.</strong></p>
-<p>找到下面4步骤里的视图显示的目录,有一个ext-2.2软链指向的路径</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lrwxrwxrwx 1 oozie hadoop        41 Dec 12  2018 ext-2.2 -&gt; /usr/hdp/3.0.1.0-187/oozie/libext/ext-2.2 </span><br></pre></td></tr></table></figure>
-
-<p>将之前的下载的安装包放到该路径就可以了</p>
-<span id="more"></span>
-
-<p>其他步骤基本一致,路径稍有出入,方法如下:</p>
-<h4 id="1-安装完成-访问UI界面"><a href="#1-安装完成-访问UI界面" class="headerlink" title="1.安装完成,访问UI界面"></a>1.安装完成,访问UI界面</h4><p>安装完成后,访问链接 <a href="http://ambari:11000/oozie">http://ambari:11000/oozie</a></p>
-<p>出现如下界面</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">解决To enable Oozie web console install the Ext JS library.</span><br></pre></td></tr></table></figure>
-
-<p><img src="D:\dev\note\weixinobU7VjmknOes9O-aOMfOMgyw2dAY\b6addd1bb654416298b94abfa009e551\clipboard.png" alt="img"></p>
-<h4 id="2-下载解压ext-2-2-zip"><a href="#2-下载解压ext-2-2-zip" class="headerlink" title="2.下载解压ext-2.2.zip"></a><strong>2.下载解压ext-2.2.zip</strong></h4><p>下载包链接,<a href="http://archive.cloudera.com/gplextras/misc/ext-2.2.zip">点我</a></p>
-<p>将ext-2.2.zip放到/usr/hdp/3.0.1.0-187/oozie/libext目录下,<strong>这里的路径是我的绝对路径,你个人oozie安装目录注意更换</strong></p>
-<p>解压</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /usr/hdp/3.0.1.0-187/oozie/libext </span><br><span class="line"><span class="meta">#</span><span class="bash">解压压缩包</span> </span><br><span class="line">unzip ext-2.2.zip  </span><br><span class="line"><span class="meta">#</span><span class="bash">有时候需要对ext-2.2文件夹进行一个授权(可选择)</span> </span><br><span class="line">chown oozie:oozie -R ext-2.2 </span><br></pre></td></tr></table></figure>
-
-<h4 id="3-ambari-管理ui界面停止oozie-server"><a href="#3-ambari-管理ui界面停止oozie-server" class="headerlink" title="3.ambari 管理ui界面停止oozie server"></a><strong>3.ambari 管理ui界面停止oozie server</strong></h4><p><img src="D:\dev\note\weixinobU7VjmknOes9O-aOMfOMgyw2dAY\7557a148372f491a86924ed83bb3148f\clipboard.png" alt="img"></p>
-<h4 id="4-删除webapps下的oozie文件"><a href="#4-删除webapps下的oozie文件" class="headerlink" title="4.删除webapps下的oozie文件"></a><strong>4.删除webapps下的oozie文件</strong></h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr/hdp/current/oozie-server/oozie-server/webapps </span><br></pre></td></tr></table></figure>
-
-<p>视图:</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@ambari webapps]# ll </span><br><span class="line">total 307260 </span><br><span class="line">lrwxrwxrwx 1 oozie hadoop        30 Dec 12  2018 docs -&gt; /usr/hdp/3.0.1.0-187/oozie/doc lrwxrwxrwx 1 oozie hadoop        41 Dec 12  2018 ext-2.2 -&gt; /usr/hdp/3.0.1.0-187/oozie/libext/ext-2.2 </span><br><span class="line">drwxr-xr-x 8 oozie hadoop      4096 Jul 26 10:52 oozie </span><br><span class="line">-rw-r--r-- 1 oozie hadoop 314627216 Jul 26 10:52 oozie.war </span><br></pre></td></tr></table></figure>
-
-<p>将两个oozie文件全部删除</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf oozie* </span><br></pre></td></tr></table></figure>
-
-<p>执行命令,编译war包</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/hdp/current/oozie-server/bin/oozie-setup.sh prepare-war </span><br></pre></td></tr></table></figure>
-
-<h4 id="5-通过ambari-管理ui启动oozie-server"><a href="#5-通过ambari-管理ui启动oozie-server" class="headerlink" title="5.通过ambari 管理ui启动oozie server"></a><strong>5.通过ambari 管理ui启动oozie server</strong></h4><p>再次访问则成功了</p>
-<h4 id="6-补充"><a href="#6-补充" class="headerlink" title="6.补充"></a><strong>6.补充</strong></h4><p>其他集群管理工具安装oozie,关于oozie的UI界面无法访问的问题,大致类似</p>
-<p>找到4步骤里的视图显示的目录</p>
-<p>有一个ext-2.2软链指向的路径</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">lrwxrwxrwx 1 oozie hadoop        41 Dec 12  2018 ext-2.2 -&gt; /usr/hdp/3.0.1.0-187/oozie/libext/ext-2.2 </span><br></pre></td></tr></table></figure>
-
-<p>将之前的下载的安装包放到该路径就可以了</p>
-<p>其他步骤基本一致,路径稍有出入</p>
-<p>**我是鲁边,2020 peace and love **</p>
-<p>按例，我的个人公众号：鲁边社，欢迎关注,后台回复关键词 <strong>oozie</strong> 获取生产环境的workflow案例</p>
-<img src="https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg" alt="avatar" width="300" />]]></content>
-      <tags>
-        <tag>oozie</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>0成本搭建个人技术博客和个人网站</title>
-    <url>/2020/01/blogcreate/</url>
+    <url>/p/292df0e9.html</url>
     <content><![CDATA[<p>摘要:</p>
 <p>首先送上我的个人博客先睹为快</p>
 <p><a href="https://lubians.github.io/">鲁边的个人博客</a></p>
 <p>说说搭建个人博客的初衷,前段时间发现自己在博客网站上的文章配图没了,感觉很不可思议,就萌生了这样的想法,但真正驱使我去行动起来的原因是,最近有一次我发表了一篇文章,结果还要审核,最后告诉我审核不通过,好吧,我换了一个博客发表,结果给我封号了,封号了,心情一时难以言表.于是愤而起身,决定亲自搭建一个博客.</p>
 <span id="more"></span>
-
-
-
 <p>下面我们看正文.</p>
-<h4 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a><strong>一.前言</strong></h4><p>如果时间算是成本的话,那我的标题可能起错了.</p>
-<h5 id="1-1-为什么要搭建博客"><a href="#1-1-为什么要搭建博客" class="headerlink" title="1.1.为什么要搭建博客"></a><strong>1.1.为什么要搭建博客</strong></h5><p>相比较CSDN博客园简书而言,个人博客是自由的,你的博客风格,博客模板,内容都由你自己定,还可以自己起名.这是一件很酷的事情.</p>
+<h4 id="一前言"><a class="markdownIt-Anchor" href="#一前言"></a> <strong>一.前言</strong></h4>
+<p>如果时间算是成本的话,那我的标题可能起错了.</p>
+<h5 id="11为什么要搭建博客"><a class="markdownIt-Anchor" href="#11为什么要搭建博客"></a> <strong>1.1.为什么要搭建博客</strong></h5>
+<p>相比较CSDN博客园简书而言,个人博客是自由的,你的博客风格,博客模板,内容都由你自己定,还可以自己起名.这是一件很酷的事情.</p>
 <p>再想想那满屏的广告,和你精美的文章一对比,顿时就没了兴趣,不论是你自己还是读者.</p>
-<h5 id="1-2-搭建博客难吗"><a href="#1-2-搭建博客难吗" class="headerlink" title="1.2.搭建博客难吗?"></a><strong>1.2.搭建博客难吗?</strong></h5><p>我以前认为搭建博客需要进行域名申请,服务器购买,网站备案,所以操作了一次,而且打算自己写个网站出来,后来我失败了.</p>
+<h5 id="12搭建博客难吗"><a class="markdownIt-Anchor" href="#12搭建博客难吗"></a> <strong>1.2.搭建博客难吗?</strong></h5>
+<p>我以前认为搭建博客需要进行域名申请,服务器购买,网站备案,所以操作了一次,而且打算自己写个网站出来,后来我失败了.</p>
 <p>我前端啥都不懂,让我写网站?那个时候的我肯定是哪里出了问题,这么高大上的事情还是留给更有实力的人来做吧.</p>
 <p>就这几天我搭建博客的整个过程来看,其实搭建博客并不难,当然我还在抠官方文档,这个就另说了.</p>
 <p>按照我个人的教程来说,搭建一个个人博客花费的时间一个小时不到就可以了.当然你是严格按照教程来做的.</p>
 <p>不过有一点得提醒一下蠢蠢欲动的你,如果你想把博客做的好看一点的话,会花费更多的精力,当然,最多再加一小时.</p>
-<h4 id="二-博客采用的技术"><a href="#二-博客采用的技术" class="headerlink" title="二.博客采用的技术"></a><strong>二.博客采用的技术</strong></h4><p>之前我就说过博客完全是依托于GitHub pages来搭建的,不要关闭,且认真看下去.</p>
-<p>Github Pages 是面向用户、组织和项目开放的公共静态页面搭建托管服务，站点可以被免费托管在 Github 上，你可以选择使用 Github Pages 默认提供的域名 github.io 或者自定义域名来发布站点。</p>
-<h5 id="2-1-博客采用的选型"><a href="#2-1-博客采用的选型" class="headerlink" title="2.1.博客采用的选型"></a><strong>2.1.博客采用的选型</strong></h5><p>静态博客的选型主要有两种:</p>
+<h4 id="二博客采用的技术"><a class="markdownIt-Anchor" href="#二博客采用的技术"></a> <strong>二.博客采用的技术</strong></h4>
+<p>之前我就说过博客完全是依托于GitHub pages来搭建的,不要关闭,且认真看下去.</p>
+<p>Github Pages 是面向用户、组织和项目开放的公共静态页面搭建托管服务，站点可以被免费托管在 Github 上，你可以选择使用 Github Pages 默认提供的域名 <a href="http://github.io">github.io</a> 或者自定义域名来发布站点。</p>
+<h5 id="21博客采用的选型"><a class="markdownIt-Anchor" href="#21博客采用的选型"></a> <strong>2.1.博客采用的选型</strong></h5>
+<p>静态博客的选型主要有两种:</p>
 <p>①GitHub 上 结合 Jekyll 搭建的博客，Jekyll 是一个简单的博客形态的静态站点生产机器。它有一个模版目录，其中包含原始文本格式的文档，通过一个转换器（如 Markdown）和我们的 Liquid 渲染器转化成一个完整的可发布的静态网站，你可以发布在任何你喜爱的服务器上。Jekyll 也可以运行在 GitHub Page 上，也就是说，你可以使用 GitHub 的服务来搭建你的项目页面、博客或者网站，而且是完全免费的。</p>
 <p>②本地渲染好 HTML 后，上传到服务端，代表作品就是 hexo。</p>
 <p>简单说，第一种方式，就是我们在本地写好 markdown 之后，直接上传到服务端，服务端会自动渲染成 HTML，然后展示给用户，第二种方案则是我们在本地写好 markdown 之后，在本地将 markdown 渲染成 HTML，然后将渲染好的 HTML 上传到服务端。（markdown 小伙伴们应该都了解吧，我就不做过多介绍了）</p>
 <p>这里我选用的就是第二种方式,至于为啥选用第二种搭建博客的方式呢,主要原因有Jekyll技术文档是英文的,并且采用翻译全程不准确,而hexo竟然有中文文档.(我能把我看不懂英文文档的事情告诉你?)</p>
 <p>其实主要原因是hexo轻便,访问迅速,博客模板支持也很好,而Jekyll的几个博客模板我都不是很喜欢.两者各有优劣,因人而异.</p>
-<h5 id="2-2-所涉及的其他技术"><a href="#2-2-所涉及的其他技术" class="headerlink" title="2.2.所涉及的其他技术"></a><strong>2.2.所涉及的其他技术</strong></h5><p>①git的本地部署</p>
+<h5 id="22所涉及的其他技术"><a class="markdownIt-Anchor" href="#22所涉及的其他技术"></a> <strong>2.2.所涉及的其他技术</strong></h5>
+<p>①git的本地部署</p>
 <p>②Node.js的安装(安装时不要忘记添加环境变量)</p>
 <p>③阅读中文的能力</p>
 <p>注意git的安装和Node的安装网上都有教程,本身安装也基本上都是下一步的操作.有出现问题的可以联系我,这里就不多说了.</p>
 <p>在cmd中,测试有版本号则安装成功</p>
-<h4 id="三-开始搭建博客"><a href="#三-开始搭建博客" class="headerlink" title="三.开始搭建博客"></a><strong>三.开始搭建博客</strong></h4><h5 id="3-1-安装Hexo"><a href="#3-1-安装Hexo" class="headerlink" title="3.1.安装Hexo"></a><strong>3.1.安装Hexo</strong></h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Hexo官方文档](https://hexo.io/zh-cn/docs/)</span><br></pre></td></tr></table></figure>
-
+<h4 id="三开始搭建博客"><a class="markdownIt-Anchor" href="#三开始搭建博客"></a> <strong>三.开始搭建博客</strong></h4>
+<h5 id="31安装hexo"><a class="markdownIt-Anchor" href="#31安装hexo"></a> <strong>3.1.安装Hexo</strong></h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Hexo官方文档](https://hexo.io/zh-cn/docs/)</span><br></pre></td></tr></table></figure>
 <p>cmd命令行输入安装命令:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
 <p>安装成功后,在Hexo安装的本地新建一个文件夹,这个文件夹就是你的博客根目录</p>
 <p>我是直接在电脑E盘下面进行安装的,所以我在E盘下新建一个文件夹lubians</p>
-<h5 id="3-2开始搭建网站"><a href="#3-2开始搭建网站" class="headerlink" title="3.2开始搭建网站"></a><strong>3.2开始搭建网站</strong></h5><p>进入刚才新建的文件夹lubians,启动命令行工具cmd</p>
+<h5 id="32开始搭建网站"><a class="markdownIt-Anchor" href="#32开始搭建网站"></a> <strong>3.2开始搭建网站</strong></h5>
+<p>进入刚才新建的文件夹lubians,启动命令行工具cmd</p>
 <p>输入下面的命令初始化当前文件夹</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
-
 <p>接下来再输入以下命令安装相关的依赖</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
 <p>安装完成后这时你的文件夹目录大概是下面这个样子:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-
 <p>我的文件夹图样</p>
-<p><img src="https://i.loli.net/2020/01/11/2pxLMfBRZKENn5Y.png"></p>
+<p><img src="https://i.loli.net/2020/01/11/2pxLMfBRZKENn5Y.png" alt="" /></p>
 <p>以上的文件和文件夹中,我们来重点关注两个, _config.yml 文件和 themes 文件夹</p>
 <p>_config.yml 文件中，我们可以做网站的一些基本配置，例如网站的 title，描述，关键字、图标等，这些配置大都见名知意。如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Site</span><br><span class="line">title: 鲁边</span><br><span class="line">subtitle: 昨天,今天,明天</span><br><span class="line">description: 本站是鲁边的技术分享博客。</span><br><span class="line">keywords: Hadoop,Hadoop生态圈,Java</span><br><span class="line">author: lubians</span><br><span class="line">email: ftongyu@qq.com</span><br><span class="line">language: zh-Hans</span><br><span class="line">timezone: Asia/Shanghai</span><br></pre></td></tr></table></figure>
-
 <p>配置完成后,在lubians文件夹下启动cmd命令行工具,输入:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo ghexo s</span><br></pre></td></tr></table></figure>
-
 <p>就已经启动项目了</p>
 <p>这里的hexo g 就类似于打包编译的过程,生成静态的HTML文件,hexo s 则是启动服务的意思.</p>
-<p>在浏览器中输入<a href="http://localhost:4000/">http://localhost:4000</a> 就可以看到网站了,博客效果:</p>
-<p><img src="https://i.loli.net/2020/01/11/XMCJupBzqdj6Fyf.png" alt="3585491-7a943c497c5c41b1.png"></p>
+<p>在浏览器中输入http://localhost:4000 就可以看到网站了,博客效果:</p>
+<p><img src="https://i.loli.net/2020/01/11/XMCJupBzqdj6Fyf.png" alt="3585491-7a943c497c5c41b1.png" /></p>
 <p>说一下hexo里面的几个命令</p>
 <table>
 <thead>
@@ -120,7 +71,8 @@
 <th>中文含义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>hexo server</td>
 <td>hexo s</td>
 <td>本地启动</td>
@@ -140,73 +92,76 @@
 <td></td>
 <td>清除缓存和已经生成的静态文件</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>这四个是最常用的,其他相关命令可以参考Hexo文档,基本上用不到.</p>
-<h4 id="四-自定义主题"><a href="#四-自定义主题" class="headerlink" title="四.自定义主题"></a><strong>四.自定义主题</strong></h4><p>到这里我们的博客搭建已经告一段落了,但是呢,有人就问了,我的博客界面怎么和刚才的页面展示不一样.这就涉及到自定义主题和上面我们说要关注的另一个文件目录 themes 有关了.</p>
-<h5 id="4-1主题"><a href="#4-1主题" class="headerlink" title="4.1主题"></a><strong>4.1主题</strong></h5><p>Hexo生态是比较丰富的,有很多可供选择的主题,上面展示的界面是默认的主题landscape,我使用的主题是shenyu的作用Ayer,GitHub地址:</p>
+<h4 id="四自定义主题"><a class="markdownIt-Anchor" href="#四自定义主题"></a> <strong>四.自定义主题</strong></h4>
+<p>到这里我们的博客搭建已经告一段落了,但是呢,有人就问了,我的博客界面怎么和刚才的页面展示不一样.这就涉及到自定义主题和上面我们说要关注的另一个文件目录 themes 有关了.</p>
+<h5 id="41主题"><a class="markdownIt-Anchor" href="#41主题"></a> <strong>4.1主题</strong></h5>
+<p>Hexo生态是比较丰富的,有很多可供选择的主题,上面展示的界面是默认的主题landscape,我使用的主题是shenyu的作用Ayer,GitHub地址:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/Shen-Yu/hexo-theme-ayer.git</span><br><span class="line">这里再提供两个主题供大家参考</span><br><span class="line">https://github.com/litten/hexo-theme-yilia.git</span><br><span class="line">https://github.com/iissnan/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-2配置"><a href="#4-2配置" class="headerlink" title="4.2配置"></a><strong>4.2配置</strong></h5><p>首先进入到themes目录下,这个目录里原本就有一个landscape文件夹,放的是默认的主题.</p>
+<h5 id="42配置"><a class="markdownIt-Anchor" href="#42配置"></a> <strong>4.2配置</strong></h5>
+<p>首先进入到themes目录下,这个目录里原本就有一个landscape文件夹,放的是默认的主题.</p>
 <p>这里就需要在GitHub上克隆你喜欢的主题到themes目录下,当然也可以直接将主题文件下载后拷贝进来.直接在后台回复 <strong>[Ayer]</strong> 获取主题文件.</p>
 <p>以我使用的主题为例,在themes下启动cmd命令行,输入clone命令:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Shen-Yu/hexo-theme-ayer.git</span><br></pre></td></tr></table></figure>
-
 <p>克隆成功后,修改lubians的 _config.yml文件,将主题修改为 Ayer(注意冒号后有空格),如下:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">## Themes: https://hexo.io/themes/</span><br><span class="line">theme: Ayer</span><br></pre></td></tr></table></figure>
-
 <p>注意这里有两个_config.yml文件,一个是最外层文件夹下的_config.yml,还有一个是主题文件里的_config.yml.</p>
 <p>其中外层_config.yml文件里是我们对整个博客的配置,主题文件里的_config.yml是对主题的一些相关配置,要区分开.</p>
-<h5 id="4-3打包启动"><a href="#4-3打包启动" class="headerlink" title="4.3打包启动"></a><strong>4.3打包启动</strong></h5><p>主题创建好之后，接下来就是对主题的配置了，这个比较容易，直接参考官方文档即可。</p>
+<h5 id="43打包启动"><a class="markdownIt-Anchor" href="#43打包启动"></a> <strong>4.3打包启动</strong></h5>
+<p>主题创建好之后，接下来就是对主题的配置了，这个比较容易，直接参考官方文档即可。</p>
 <p>配置完成后，执行如下命令，即可看到新的主题效果：</p>
-<p><img src="https://i.loli.net/2020/01/11/jQv2awKTLR8ql1p.jpg" alt="33f8d61591ba9989f0f678012b52181.jpg"></p>
+<p><img src="https://i.loli.net/2020/01/11/jQv2awKTLR8ql1p.jpg" alt="33f8d61591ba9989f0f678012b52181.jpg" /></p>
 <p>在lubians文件夹下启动cmd命令行输入:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<h4 id="五-发布到GitHub上"><a href="#五-发布到GitHub上" class="headerlink" title="五.发布到GitHub上"></a><strong>五.发布到GitHub上</strong></h4><p>最后一步</p>
-<h5 id="5-1创建GitHub仓库"><a href="#5-1创建GitHub仓库" class="headerlink" title="5.1创建GitHub仓库"></a><strong>5.1创建GitHub仓库</strong></h5><p>以 自己的GitHub ID.github.io 为名创建一个 public 仓库，例如我的 ID 为 lubians，创建的仓库如下：</p>
-<p><img src="https://i.loli.net/2020/01/11/gklPbrtcSxp27YB.png"></p>
-<p>这里一定注意仓库名字前缀是需要和Owner一致,我的Owner是lubians,那么我的仓库名为lubians.github.io .新建成功后,修改lubians文件夹下的_config.yml 文件,配置刚才创建的GitHub仓库地址,如下,将deploy修改为：</p>
+<h4 id="五发布到github上"><a class="markdownIt-Anchor" href="#五发布到github上"></a> <strong>五.发布到GitHub上</strong></h4>
+<p>最后一步</p>
+<h5 id="51创建github仓库"><a class="markdownIt-Anchor" href="#51创建github仓库"></a> <strong>5.1创建GitHub仓库</strong></h5>
+<p>以 自己的GitHub <a href="http://ID.github.io">ID.github.io</a> 为名创建一个 public 仓库，例如我的 ID 为 lubians，创建的仓库如下：</p>
+<p><img src="https://i.loli.net/2020/01/11/gklPbrtcSxp27YB.png" alt="" /></p>
+<p>这里一定注意仓库名字前缀是需要和Owner一致,我的Owner是lubians,<a href="http://xn--lubians-e73k6d73dsy7awx4a9qj985e147d.github.io">那么我的仓库名为lubians.github.io</a> .新建成功后,修改lubians文件夹下的_config.yml 文件,配置刚才创建的GitHub仓库地址,如下,将deploy修改为：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:lubians/lubians.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-2发布"><a href="#5-2发布" class="headerlink" title="5.2发布"></a><strong>5.2发布</strong></h5><p>接下来使用Git bash来进行命令的执行,在lubians文件夹中右键,点击Git bash选项进入Git命令行,执行命令:</p>
+<h5 id="52发布"><a class="markdownIt-Anchor" href="#52发布"></a> <strong>5.2发布</strong></h5>
+<p>接下来使用Git bash来进行命令的执行,在lubians文件夹中右键,点击Git bash选项进入Git命令行,执行命令:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
 <p>最后在同文件夹下使用cmd命令行输入命令来发布:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
 <p>执行完成后,你的数据就已经上传到Github了,接下来直接访问</p>
 <p><a href="https://lubians.github.io/">个人博客地址</a></p>
 <p>就可以看到自己的个人站点了,记住把链接里的lubians换成你自己的github设置的仓库名.</p>
 <p>以上就完成了整个个人博客的搭建.</p>
-<h4 id="六-搭建个人博客遇到的问题"><a href="#六-搭建个人博客遇到的问题" class="headerlink" title="六.搭建个人博客遇到的问题"></a><strong>六.搭建个人博客遇到的问题</strong></h4><p>还没完呢,可以先搭建,之后遇到问题,再来这里看看有没有同样的问题</p>
-<h5 id="6-1-没有git环境和Node-js环境"><a href="#6-1-没有git环境和Node-js环境" class="headerlink" title="6.1.没有git环境和Node.js环境"></a><strong>6.1.没有git环境和Node.js环境</strong></h5><p>我因为新入手的一台笔记本,没有相关环境,整个过程需要重新配置,记住一点,安装以上两个环境的时候都可以按照官方文档来,但是一定安装完成后配置环境变量,如果环境变量不会配,那我就没办法了,百度吧</p>
-<h5 id="6-2页面太简陋-不好看"><a href="#6-2页面太简陋-不好看" class="headerlink" title="6.2页面太简陋,不好看"></a><strong>6.2页面太简陋,不好看</strong></h5><p>我是个追求 审美的人,哈哈,再抠了一整天的Hexo的中文文档后,搭建了个人博客,发现贼丑,然后就在网上各种寻找模板,最后使用Ayer主题,主题的使用方式上面已经说过了.</p>
+<h4 id="六搭建个人博客遇到的问题"><a class="markdownIt-Anchor" href="#六搭建个人博客遇到的问题"></a> <strong>六.搭建个人博客遇到的问题</strong></h4>
+<p>还没完呢,可以先搭建,之后遇到问题,再来这里看看有没有同样的问题</p>
+<h5 id="61没有git环境和nodejs环境"><a class="markdownIt-Anchor" href="#61没有git环境和nodejs环境"></a> <strong>6.1.没有git环境和Node.js环境</strong></h5>
+<p>我因为新入手的一台笔记本,没有相关环境,整个过程需要重新配置,记住一点,安装以上两个环境的时候都可以按照官方文档来,但是一定安装完成后配置环境变量,如果环境变量不会配,那我就没办法了,百度吧</p>
+<h5 id="62页面太简陋不好看"><a class="markdownIt-Anchor" href="#62页面太简陋不好看"></a> <strong>6.2页面太简陋,不好看</strong></h5>
+<p>我是个追求 审美的人,哈哈,再抠了一整天的Hexo的中文文档后,搭建了个人博客,发现贼丑,然后就在网上各种寻找模板,最后使用Ayer主题,主题的使用方式上面已经说过了.</p>
 <p>更多主题配置请参阅</p>
 <p><a href="https://theme-next.iissnan.com/theme-settings.html">Hexo官方主题文档</a></p>
-<h5 id="6-3-模板引入搜索功能"><a href="#6-3-模板引入搜索功能" class="headerlink" title="6.3.模板引入搜索功能"></a><strong>6.3.模板引入搜索功能</strong></h5><p>这里需要使用命令下载安装一个搜索插件,在lubians文件夹中启用cmd命令行,输入:</p>
+<h5 id="63模板引入搜索功能"><a class="markdownIt-Anchor" href="#63模板引入搜索功能"></a> <strong>6.3.模板引入搜索功能</strong></h5>
+<p>这里需要使用命令下载安装一个搜索插件,在lubians文件夹中启用cmd命令行,输入:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-search</span><br></pre></td></tr></table></figure>
-
 <p>然后在_config.yml配置文件中配置:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br></pre></td></tr></table></figure>
-
 <p>还有一个网站用户订阅功能,提高自己的博客影响力嘛,同样,下载安装</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-feed</span><br></pre></td></tr></table></figure>
-
 <p>_config.yml中配置</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">feed:</span><br><span class="line">    type: atom</span><br><span class="line">    path: atom.xml</span><br><span class="line">    limit: 100</span><br></pre></td></tr></table></figure>
-
-<h5 id="6-4引入博客的评论功能"><a href="#6-4引入博客的评论功能" class="headerlink" title="6.4引入博客的评论功能"></a><strong>6.4引入博客的评论功能</strong></h5><p>我的评论使用的是：Valine,Valine是一款快速、简洁且高效的无后端评论系统.</p>
+<h5 id="64引入博客的评论功能"><a class="markdownIt-Anchor" href="#64引入博客的评论功能"></a> <strong>6.4引入博客的评论功能</strong></h5>
+<p>我的评论使用的是：Valine,Valine是一款快速、简洁且高效的无后端评论系统.</p>
 <p>注意启用Valine必须先创建leancloud应用.</p>
 <p><a href="https://www.leancloud.cn/">leancloud地址</a></p>
 <p>按步骤操作即可,获取 id 和 key.</p>
 <p>填入Ayer主题中的_config.yml配置文件(注意是另一个配置文件)中,位置如下:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 1、Valine[一款快速、简洁且高效的无后端评论系统](https://github.com/xCss/Valine)</span><br><span class="line"># 启用Valine必须先创建leancloud应用， 获取 id|key 填入即可</span><br><span class="line">leancloud:  </span><br><span class="line">  enable: true</span><br><span class="line">  app_id: &#x27;&#x27;</span><br><span class="line">  app_key: &#x27;&#x27;</span><br></pre></td></tr></table></figure>
-
-<h5 id="6-5图片链接问题"><a href="#6-5图片链接问题" class="headerlink" title="6.5图片链接问题"></a><strong>6.5图片链接问题</strong></h5><p>这个是最坑的,因为发表文章都是用Markdown来写的,图片是以链接的形式引入的,我主要使用Typora笔记来写,这样图片就不知道存到哪里了,微信公众号发表文章的图片无法引入,简书,博客园都不行,所以需要使用图床工具.</p>
-<p>综合下来,我使用的图床工具是 </p>
+<h5 id="65图片链接问题"><a class="markdownIt-Anchor" href="#65图片链接问题"></a> <strong>6.5图片链接问题</strong></h5>
+<p>这个是最坑的,因为发表文章都是用Markdown来写的,图片是以链接的形式引入的,我主要使用Typora笔记来写,这样图片就不知道存到哪里了,微信公众号发表文章的图片无法引入,简书,博客园都不行,所以需要使用图床工具.</p>
+<p>综合下来,我使用的图床工具是</p>
 <p><a href="https://sm.ms/">SM.MS</a></p>
 <p>单次上传文件不超过10个,每个不大于5MB,有5G的免费使用空间,操作便捷,建议使用.</p>
-<h4 id="七-废话"><a href="#七-废话" class="headerlink" title="七.废话"></a><strong>七.废话</strong></h4><p>以上博客搭建流程就彻底完结了,还是之前的那句话,欢迎大家订阅和友链.</p>
+<h4 id="七废话"><a class="markdownIt-Anchor" href="#七废话"></a> <strong>七.废话</strong></h4>
+<p>以上博客搭建流程就彻底完结了,还是之前的那句话,欢迎大家订阅和友链.</p>
 <p>突然想起李宗盛的一首歌里的一句歌词,<strong>想说却还没说的还很多.</strong></p>
 <p>这会却不知道从何说起了,我的个人博客里还比较空,这段时间我会逐渐把握在其他平台发表的博客和自己以前整理的笔记逐渐全部放到上面去.</p>
 <p>给各位小伙伴说句话吧,希望你能在我这里学到点什么,而我也能因为你的回馈,让我学到更多.</p>
@@ -222,27 +177,73 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux下Python3的安装</title>
-    <url>/2020/01/LinuxInstallPython3/</url>
-    <content><![CDATA[<p>在不卸载Python2版本的同时使用Python3.*<br><strong>切勿删除Python2,不然会出问题</strong></p>
-<p>参考这篇文章 <a href="https://www.cnblogs.com/lubians/p/12190667.html">手抖把Python2.7卸载了,导致了自己的yum不可用</a></p>
-<p>环境:  centos7.4<br>版本：python3.8</p>
+    <title>安装oozie的web界面无法访问问题</title>
+    <url>/p/36480b22.html</url>
+    <content><![CDATA[<h4 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言:</h4>
+<p>我用的是Ambari管理集群<br />
+<strong>其他集群管理工具安装oozie和手动编译安装oozie,关于oozie的UI界面无法访问的问题,大致和该方法类似.</strong></p>
+<p>找到下面4步骤里的视图显示的目录,有一个ext-2.2软链指向的路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">lrwxrwxrwx 1 oozie hadoop        41 Dec 12  2018 ext-2.2 -&gt; /usr/hdp/3.0.1.0-187/oozie/libext/ext-2.2 </span><br></pre></td></tr></table></figure>
+<p>将之前的下载的安装包放到该路径就可以了</p>
 <span id="more"></span>
-
-
-
-<h5 id="1-依赖包安装"><a href="#1-依赖包安装" class="headerlink" title="1.依赖包安装"></a>1.依赖包安装</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-下载包："><a href="#2-下载包：" class="headerlink" title="2.下载包："></a>2.下载包：</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载路径(里面有不同的版本)https://www.python.org/ftp/python/3.8.0/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">下载命令</span></span><br><span class="line">wget https://www.python.org/ftp/python/3.8.0/Python-3.8.tgz</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-解压："><a href="#3-解压：" class="headerlink" title="3.解压："></a>3.解压：</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf Python-3.8.0.tgz</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-安装："><a href="#4-安装：" class="headerlink" title="4.安装："></a>4.安装：</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Python-3.8.0</span><br><span class="line"><span class="meta">#</span><span class="bash">指定编译目录</span></span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line"><span class="meta">#</span><span class="bash">编译安装</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-建立软连接"><a href="#5-建立软连接" class="headerlink" title="5.建立软连接"></a>5.建立软连接</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3</span><br><span class="line">ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3</span><br></pre></td></tr></table></figure>
-
-<h5 id="6-测试一下python3是否可以用"><a href="#6-测试一下python3是否可以用" class="headerlink" title="6.测试一下python3是否可以用"></a>6.测试一下python3是否可以用</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python3</span><br><span class="line">pip3</span><br></pre></td></tr></table></figure>
-
+<p>其他步骤基本一致,路径稍有出入,方法如下:</p>
+<h4 id="1安装完成访问ui界面"><a class="markdownIt-Anchor" href="#1安装完成访问ui界面"></a> 1.安装完成,访问UI界面</h4>
+<p>安装完成后,访问链接 <a href="http://ambari:11000/oozie">http://ambari:11000/oozie</a></p>
+<p>出现如下界面</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">解决To enable Oozie web console install the Ext JS library.</span><br></pre></td></tr></table></figure>
+<p><img src="D:%5Cdev%5Cnote%5CweixinobU7VjmknOes9O-aOMfOMgyw2dAY%5Cb6addd1bb654416298b94abfa009e551%5Cclipboard.png" alt="img" /></p>
+<h4 id="2下载解压ext-22zip"><a class="markdownIt-Anchor" href="#2下载解压ext-22zip"></a> <strong>2.下载解压ext-2.2.zip</strong></h4>
+<p>下载包链接,<a href="http://archive.cloudera.com/gplextras/misc/ext-2.2.zip">点我</a></p>
+<p>将ext-2.2.zip放到/usr/hdp/3.0.1.0-187/oozie/libext目录下,<strong>这里的路径是我的绝对路径,你个人oozie安装目录注意更换</strong></p>
+<p>解压</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /usr/hdp/3.0.1.0-187/oozie/libext </span><br><span class="line"><span class="meta">#</span><span class="bash">解压压缩包</span> </span><br><span class="line">unzip ext-2.2.zip  </span><br><span class="line"><span class="meta">#</span><span class="bash">有时候需要对ext-2.2文件夹进行一个授权(可选择)</span> </span><br><span class="line">chown oozie:oozie -R ext-2.2 </span><br></pre></td></tr></table></figure>
+<h4 id="3ambari-管理ui界面停止oozie-server"><a class="markdownIt-Anchor" href="#3ambari-管理ui界面停止oozie-server"></a> <strong>3.ambari 管理ui界面停止oozie server</strong></h4>
+<p><img src="D:%5Cdev%5Cnote%5CweixinobU7VjmknOes9O-aOMfOMgyw2dAY%5C7557a148372f491a86924ed83bb3148f%5Cclipboard.png" alt="img" /></p>
+<h4 id="4删除webapps下的oozie文件"><a class="markdownIt-Anchor" href="#4删除webapps下的oozie文件"></a> <strong>4.删除webapps下的oozie文件</strong></h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr/hdp/current/oozie-server/oozie-server/webapps </span><br></pre></td></tr></table></figure>
+<p>视图:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@ambari webapps]# ll </span><br><span class="line">total 307260 </span><br><span class="line">lrwxrwxrwx 1 oozie hadoop        30 Dec 12  2018 docs -&gt; /usr/hdp/3.0.1.0-187/oozie/doc lrwxrwxrwx 1 oozie hadoop        41 Dec 12  2018 ext-2.2 -&gt; /usr/hdp/3.0.1.0-187/oozie/libext/ext-2.2 </span><br><span class="line">drwxr-xr-x 8 oozie hadoop      4096 Jul 26 10:52 oozie </span><br><span class="line">-rw-r--r-- 1 oozie hadoop 314627216 Jul 26 10:52 oozie.war </span><br></pre></td></tr></table></figure>
+<p>将两个oozie文件全部删除</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rm -rf oozie* </span><br></pre></td></tr></table></figure>
+<p>执行命令,编译war包</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/hdp/current/oozie-server/bin/oozie-setup.sh prepare-war </span><br></pre></td></tr></table></figure>
+<h4 id="5通过ambari-管理ui启动oozie-server"><a class="markdownIt-Anchor" href="#5通过ambari-管理ui启动oozie-server"></a> <strong>5.通过ambari 管理ui启动oozie server</strong></h4>
+<p>再次访问则成功了</p>
+<h4 id="6补充"><a class="markdownIt-Anchor" href="#6补充"></a> <strong>6.补充</strong></h4>
+<p>其他集群管理工具安装oozie,关于oozie的UI界面无法访问的问题,大致类似</p>
+<p>找到4步骤里的视图显示的目录</p>
+<p>有一个ext-2.2软链指向的路径</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">lrwxrwxrwx 1 oozie hadoop        41 Dec 12  2018 ext-2.2 -&gt; /usr/hdp/3.0.1.0-187/oozie/libext/ext-2.2 </span><br></pre></td></tr></table></figure>
+<p>将之前的下载的安装包放到该路径就可以了</p>
+<p>其他步骤基本一致,路径稍有出入</p>
+<p>**我是鲁边,2020 peace and love **</p>
+<p>按例，我的个人公众号：鲁边社，欢迎关注,后台回复关键词 <strong>oozie</strong> 获取生产环境的workflow案例</p>
+<img src="https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg" alt="avatar" width="300" />]]></content>
+      <tags>
+        <tag>oozie</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux下Python3的安装</title>
+    <url>/p/ff2729bf.html</url>
+    <content><![CDATA[<p>在不卸载Python2版本的同时使用Python3.*<br />
+<strong>切勿删除Python2,不然会出问题</strong></p>
+<p>参考这篇文章 <a href="https://www.cnblogs.com/lubians/p/12190667.html">手抖把Python2.7卸载了,导致了自己的yum不可用</a></p>
+<p>环境:  centos7.4<br />
+版本：python3.8</p>
+<span id="more"></span>
+<h5 id="1依赖包安装"><a class="markdownIt-Anchor" href="#1依赖包安装"></a> 1.依赖包安装</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</span><br></pre></td></tr></table></figure>
+<h5 id="2下载包"><a class="markdownIt-Anchor" href="#2下载包"></a> 2.下载包：</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载路径(里面有不同的版本)https://www.python.org/ftp/python/3.8.0/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">下载命令</span></span><br><span class="line">wget https://www.python.org/ftp/python/3.8.0/Python-3.8.tgz</span><br></pre></td></tr></table></figure>
+<h5 id="3解压"><a class="markdownIt-Anchor" href="#3解压"></a> 3.解压：</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf Python-3.8.0.tgz</span><br></pre></td></tr></table></figure>
+<h5 id="4安装"><a class="markdownIt-Anchor" href="#4安装"></a> 4.安装：</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Python-3.8.0</span><br><span class="line"><span class="meta">#</span><span class="bash">指定编译目录</span></span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line"><span class="meta">#</span><span class="bash">编译安装</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h5 id="5建立软连接"><a class="markdownIt-Anchor" href="#5建立软连接"></a> 5.建立软连接</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3</span><br><span class="line">ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3</span><br></pre></td></tr></table></figure>
+<h5 id="6测试一下python3是否可以用"><a class="markdownIt-Anchor" href="#6测试一下python3是否可以用"></a> 6.测试一下python3是否可以用</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python3</span><br><span class="line">pip3</span><br></pre></td></tr></table></figure>
 <p><strong>我是鲁边,2020 peace and love.</strong></p>
 ]]></content>
       <tags>
@@ -252,82 +253,100 @@
   </entry>
   <entry>
     <title>Oozie任务调度框架详解及使用简介(一)</title>
-    <url>/2020/01/oozieUse1/</url>
+    <url>/p/9ea3419e.html</url>
     <content><![CDATA[<p>摘要:个人最近一段时间一直在使用oozie,从刚开始的各种别扭到现在越来越觉得有意思的情况下,想整理一下关于oozie的认知,整理出来一个oozie系列,本来市面上关于oozie的资料就比较少,希望写完后能形成自己对oozie的独特理解和加强整体性的把握.</p>
 <span id="more"></span>
-
-
-
-<h4 id="一-常见的调度框架"><a href="#一-常见的调度框架" class="headerlink" title="一.常见的调度框架"></a>一.常见的调度框架</h4><h5 id="1-1-crontab定时器"><a href="#1-1-crontab定时器" class="headerlink" title="1.1.crontab定时器"></a><strong>1.1.crontab定时器</strong></h5><p>linux自带定时器，没有web界面 ，不利于监控任务和调度任务,在工作量比较小的情况下,建议使用linux的crontab定时命令</p>
+<h4 id="一常见的调度框架"><a class="markdownIt-Anchor" href="#一常见的调度框架"></a> 一.常见的调度框架</h4>
+<h5 id="11crontab定时器"><a class="markdownIt-Anchor" href="#11crontab定时器"></a> <strong>1.1.crontab定时器</strong></h5>
+<p>linux自带定时器，没有web界面 ，不利于监控任务和调度任务,在工作量比较小的情况下,建议使用linux的crontab定时命令</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#crongtab 命令</span></span> </span><br><span class="line">*   *   *   *   *    后面接调度 job 的命令  </span><br><span class="line">分  时  日   月  周  </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#简单实例(每天0点11分执行)</span></span> </span><br><span class="line">11 0 * * * /home/hduser/lubians/intelligentDevice/intelligentDevice.sh </span><br></pre></td></tr></table></figure>
-
-<h5 id="1-2-Azkaban调度"><a href="#1-2-Azkaban调度" class="headerlink" title="1.2.Azkaban调度"></a><strong>1.2.Azkaban调度</strong></h5><p>开源项目，key/value配置对，操作简单，带web界面</p>
+<h5 id="12azkaban调度"><a class="markdownIt-Anchor" href="#12azkaban调度"></a> <strong>1.2.Azkaban调度</strong></h5>
+<p>开源项目，key/value配置对，操作简单，带web界面</p>
 <p><a href="https://azkaban.github.io/">Azkaban开源网站</a></p>
-<h5 id="1-3-Oozie调度"><a href="#1-3-Oozie调度" class="headerlink" title="1.3.Oozie调度"></a><strong>1.3.Oozie调度</strong></h5><p>apache项目，xml配置文件，操作稍微有难度，带web查看界面，常用于hadoop相关任务的调度</p>
+<h5 id="13oozie调度"><a class="markdownIt-Anchor" href="#13oozie调度"></a> <strong>1.3.Oozie调度</strong></h5>
+<p>apache项目，xml配置文件，操作稍微有难度，带web查看界面，常用于hadoop相关任务的调度</p>
 <p><a href="http://oozie.apache.org/">Oozie官网</a></p>
-<h4 id="二-使用背景"><a href="#二-使用背景" class="headerlink" title="二.使用背景"></a><strong>二.使用背景</strong></h4><p>公司下半年技术架构升级,将整个大数据集群管理流程化,规模化,引入了更多的技术组件,这其中就有Oozie.</p>
-<h5 id="2-1-之前使用的调度技术"><a href="#2-1-之前使用的调度技术" class="headerlink" title="2.1. 之前使用的调度技术"></a><strong>2.1. 之前使用的调度技术</strong></h5><p>在这之前公司使用的调度工具主要是TaskCtl和Kettle,TaskCtl分为三层,Manage,Server和Agent.</p>
+<h4 id="二使用背景"><a class="markdownIt-Anchor" href="#二使用背景"></a> <strong>二.使用背景</strong></h4>
+<p>公司下半年技术架构升级,将整个大数据集群管理流程化,规模化,引入了更多的技术组件,这其中就有Oozie.</p>
+<h5 id="21-之前使用的调度技术"><a class="markdownIt-Anchor" href="#21-之前使用的调度技术"></a> <strong>2.1. 之前使用的调度技术</strong></h5>
+<p>在这之前公司使用的调度工具主要是TaskCtl和Kettle,TaskCtl分为三层,Manage,Server和Agent.</p>
 <p>可以理解为将调度分层了.</p>
 <p>TASKCTL主要可以完成串行、并行、依赖、互斥、执行计划、定时、容错、循环、条件分支、远程、负载均衡、自定义条件等各种不同的核心调度功能。</p>
 <p>根据不同的功能分类，TASKCTL将客户端分为Admin(平台管理)、Designer(流程集成开发环境)、Monitor(流程监控管理)三套不同的软件。</p>
-<p><strong>Admi：</strong>平台节点管理、任务类型管理、工程管理、应用设置、全局变量管理以及流程导入导出等功能。</p>
-<p><strong>Designer：</strong>平台流程代码信息管理、代码设计编辑、流程图形编辑、规则语法适时检测功能以及编译发布等功能。</p>
-<p><strong>Monitor：</strong>图形方式监控、多角度统计监控、流程起停重置、任务锁定、任务重做、信息对象查询等。</p>
-<h5 id="2-2-为什么使用Oozie"><a href="#2-2-为什么使用Oozie" class="headerlink" title="2.2. 为什么使用Oozie"></a><strong>2.2. 为什么使用Oozie</strong></h5><p>TaskCtl最大的问题是作为调度系统需要一台单独的调度服务器,并且和Hadoop生态圈的产品搭配不是很好,所以考虑另行办法在Hadoop集群上使用调度工具.</p>
+<p>**Admi：**平台节点管理、任务类型管理、工程管理、应用设置、全局变量管理以及流程导入导出等功能。</p>
+<p>**Designer：**平台流程代码信息管理、代码设计编辑、流程图形编辑、规则语法适时检测功能以及编译发布等功能。</p>
+<p>**Monitor：**图形方式监控、多角度统计监控、流程起停重置、任务锁定、任务重做、信息对象查询等。</p>
+<h5 id="22-为什么使用oozie"><a class="markdownIt-Anchor" href="#22-为什么使用oozie"></a> <strong>2.2. 为什么使用Oozie</strong></h5>
+<p>TaskCtl最大的问题是作为调度系统需要一台单独的调度服务器,并且和Hadoop生态圈的产品搭配不是很好,所以考虑另行办法在Hadoop集群上使用调度工具.</p>
 <p>使用Oozie的原因是因为公司使用的是Ambari集群管理工具,自带Oozie插件安装,同时Oozie支持Java API调度,会在工作中用到Java语言的缘故,选择了Oozie.</p>
-<h4 id="三-Oozie介绍"><a href="#三-Oozie介绍" class="headerlink" title="三.Oozie介绍"></a><strong>三.Oozie介绍</strong></h4><h5 id="3-1-Oozie是什么"><a href="#3-1-Oozie是什么" class="headerlink" title="3.1. Oozie是什么"></a><strong>3.1. Oozie是什么</strong></h5><p>oozie是一个workflow(工作流)协调系统,是由Cloudera公司贡献给Apache的,主要用来管理Hadoop作业(job).属于web应用程序,由oozie client和oozie server两个组件构成.</p>
+<h4 id="三oozie介绍"><a class="markdownIt-Anchor" href="#三oozie介绍"></a> <strong>三.Oozie介绍</strong></h4>
+<h5 id="31-oozie是什么"><a class="markdownIt-Anchor" href="#31-oozie是什么"></a> <strong>3.1. Oozie是什么</strong></h5>
+<p>oozie是一个workflow(工作流)协调系统,是由Cloudera公司贡献给Apache的,主要用来管理Hadoop作业(job).属于web应用程序,由oozie client和oozie server两个组件构成.</p>
 <p>oozie server运行于java servlet容器（tomcat）中的web程序.</p>
-<p><img src="https://i.loli.net/2020/01/14/x6d5GJpeLHPRoul.png" alt="image_1akhmftbi11bjakq13n210q216db2a.png"></p>
-<h5 id="3-2-为什么需要Oozie"><a href="#3-2-为什么需要Oozie" class="headerlink" title="3.2. 为什么需要Oozie"></a><strong>3.2. 为什么需要Oozie</strong></h5><p>①对于较为复杂的Hadoop作业系统来说,单纯的依靠shell脚本方式,手工方式调度是的流程更加难以控制.</p>
+<p><img src="https://i.loli.net/2020/01/14/x6d5GJpeLHPRoul.png" alt="image_1akhmftbi11bjakq13n210q216db2a.png" /></p>
+<h5 id="32-为什么需要oozie"><a class="markdownIt-Anchor" href="#32-为什么需要oozie"></a> <strong>3.2. 为什么需要Oozie</strong></h5>
+<p>①对于较为复杂的Hadoop作业系统来说,单纯的依靠shell脚本方式,手工方式调度是的流程更加难以控制.</p>
 <p>②复杂系统的算法需要很多不同的作业(如mr,Java程序,shell脚本,hivesql,sqoop,spark等)按照特定的顺序,串行并行,不同时间,不同条件进行执行,就需要oozie这样的调度系统做支撑,将复杂问题简单化.</p>
-<h5 id="3-3-oozie能带来什么"><a href="#3-3-oozie能带来什么" class="headerlink" title="3.3. oozie能带来什么"></a><strong>3.3. oozie能带来什么</strong></h5><p>①将hadoop生态系统中常见的mr任务启动,hdfs操作,shell调度,hive操作等通过统一的方式进行连贯调度.</p>
+<h5 id="33-oozie能带来什么"><a class="markdownIt-Anchor" href="#33-oozie能带来什么"></a> <strong>3.3. oozie能带来什么</strong></h5>
+<p>①将hadoop生态系统中常见的mr任务启动,hdfs操作,shell调度,hive操作等通过统一的方式进行连贯调度.</p>
 <p>②将复杂的依赖关系,时间触发,事件触发使用xml语言进行表达,提高开发效率.</p>
 <p>③一组任务使用一个DAG(有向无环图)来表示,图形化的表达,流程逻辑更加清晰.</p>
 <p>④支持很多种任务调度,能完成大部分的hadoop任务处理.</p>
 <p>⑤程序定义支持EL常量和函数,写过shell脚本的小伙伴使用根本没难度.</p>
-<h4 id="四-Oozie架构图"><a href="#四-Oozie架构图" class="headerlink" title="四.Oozie架构图"></a><strong>四.Oozie架构图</strong></h4><p>在网上找了一个oozie架构图,如下:</p>
-<p><img src="https://i.loli.net/2020/01/14/qXWx4Z8HEjCMfy7.png" alt="image_1akhmf44nvfh140gqc68pmhs1t.png"></p>
+<h4 id="四oozie架构图"><a class="markdownIt-Anchor" href="#四oozie架构图"></a> <strong>四.Oozie架构图</strong></h4>
+<p>在网上找了一个oozie架构图,如下:</p>
+<p><img src="https://i.loli.net/2020/01/14/qXWx4Z8HEjCMfy7.png" alt="image_1akhmf44nvfh140gqc68pmhs1t.png" /></p>
 <p>oozie包含四大服务组件:</p>
 <p>workflow: 用于支持动作有向无环图(DAG)的设计和执行,可以按照特定的顺序执行mr,hive和shell等节点.</p>
 <p>coordinator: 用于定时调度特定的 workflow 进行执行,可以基于事件,资源存在,传递参数等自动执行.</p>
 <p>bundle: 批量设定一组coordinator执行.</p>
 <p>SLA(Service Level Agreement, oozie服务器等级协定): 用于程序执行过程的日志跟踪.</p>
-<h5 id="4-1-Oozie简易架构"><a href="#4-1-Oozie简易架构" class="headerlink" title="4.1.Oozie简易架构"></a><strong>4.1.Oozie简易架构</strong></h5><p><img src="https://i.loli.net/2020/01/14/HmXMYOnDFATRzU1.png" alt="image_1akhm3bv8muv162h1u41ve318189.png"></p>
+<h5 id="41oozie简易架构"><a class="markdownIt-Anchor" href="#41oozie简易架构"></a> <strong>4.1.Oozie简易架构</strong></h5>
+<p><img src="https://i.loli.net/2020/01/14/HmXMYOnDFATRzU1.png" alt="image_1akhm3bv8muv162h1u41ve318189.png" /></p>
 <p>如上图,oozie调度本身就是一个mr程序,开始,执行,结束或者失败,简单易懂.</p>
 <p>所以我们可以思考一下,在oozie调度mr程序时,其实同一时间是运行了两个mr的,一个是调度本身,一个是任务.</p>
-<h5 id="4-2-一个有向无环图"><a href="#4-2-一个有向无环图" class="headerlink" title="4.2.一个有向无环图"></a><strong>4.2.一个有向无环图</strong></h5><p>任务本身是一个有向无环图(DAG)</p>
-<p><img src="https://i.loli.net/2020/01/14/gnIDtCb1M5wWVGi.png" alt="image_1akhmaidd6a3d6m11ak15oe9p0m.png"></p>
+<h5 id="42一个有向无环图"><a class="markdownIt-Anchor" href="#42一个有向无环图"></a> <strong>4.2.一个有向无环图</strong></h5>
+<p>任务本身是一个有向无环图(DAG)</p>
+<p><img src="https://i.loli.net/2020/01/14/gnIDtCb1M5wWVGi.png" alt="image_1akhmaidd6a3d6m11ak15oe9p0m.png" /></p>
 <p>图中fork标签后面的 MR job 和 Hive job 是并行执行的,都成功后通过 join 节点合并.</p>
-<h5 id="4-3-coordinator生命周期"><a href="#4-3-coordinator生命周期" class="headerlink" title="4.3.coordinator生命周期"></a><strong>4.3.coordinator生命周期</strong></h5><p><img src="https://i.loli.net/2020/01/14/7XNjw5vzuaFidWn.png" alt="image_1akhmbdfe32m1m6f363juu27713.png"></p>
+<h5 id="43coordinator生命周期"><a class="markdownIt-Anchor" href="#43coordinator生命周期"></a> <strong>4.3.coordinator生命周期</strong></h5>
+<p><img src="https://i.loli.net/2020/01/14/7XNjw5vzuaFidWn.png" alt="image_1akhmbdfe32m1m6f363juu27713.png" /></p>
 <p>coordinator是一个定时服务,通过定时来固定频率的执行任务,这里的功能类似crontab.</p>
-<h5 id="4-4-bundle-Job"><a href="#4-4-bundle-Job" class="headerlink" title="4.4.bundle Job"></a><strong>4.4.bundle Job</strong></h5><p><img src="https://i.loli.net/2020/01/14/Vlx7JqtiEbudGh4.png" alt="image_1akhmcmbn12hu12g412tv1cjo19g11g.png"></p>
+<h5 id="44bundle-job"><a class="markdownIt-Anchor" href="#44bundle-job"></a> <strong>4.4.bundle Job</strong></h5>
+<p><img src="https://i.loli.net/2020/01/14/Vlx7JqtiEbudGh4.png" alt="image_1akhmcmbn12hu12g412tv1cjo19g11g.png" /></p>
 <p>bundle的作用就是设定多个coordinator定时服务按批次执行,这样使得多个任务也形成一个DAG.</p>
-<h4 id="五-Oozie的安装与配置"><a href="#五-Oozie的安装与配置" class="headerlink" title="五.Oozie的安装与配置"></a><strong>五.Oozie的安装与配置</strong></h4><h5 id="5-1-Oozie的安装方式"><a href="#5-1-Oozie的安装方式" class="headerlink" title="5.1.Oozie的安装方式"></a><strong>5.1.Oozie的安装方式</strong></h5><p>单独安装: 需要安装server端和client端</p>
+<h4 id="五oozie的安装与配置"><a class="markdownIt-Anchor" href="#五oozie的安装与配置"></a> <strong>五.Oozie的安装与配置</strong></h4>
+<h5 id="51oozie的安装方式"><a class="markdownIt-Anchor" href="#51oozie的安装方式"></a> <strong>5.1.Oozie的安装方式</strong></h5>
+<p>单独安装: 需要安装server端和client端</p>
 <p>组件安装: 使用Ambari进行oozie组件添加（可以使用HA）</p>
 <p>注意:如果使用CDH集群管理工具,也是一键配置,因为我是直接组件式安装,这里就不细讲了,有需要的小伙伴可以联系我,看情况写一下ambari配置oozie.</p>
-<h5 id="5-2-Oozie配置"><a href="#5-2-Oozie配置" class="headerlink" title="5.2.Oozie配置"></a><strong>5.2.Oozie配置</strong></h5><p>节点内存配置：</p>
+<h5 id="52oozie配置"><a class="markdownIt-Anchor" href="#52oozie配置"></a> <strong>5.2.Oozie配置</strong></h5>
+<p>节点内存配置：</p>
 <p><strong>这里的节点内存配置可能会涉及到oozie调度阻塞的问题,这个在之后有时间整理一下整个问题现象以及解决办法,这里就看一下</strong></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">（节点并发）,决定了你可以同时执行几个action</span></span><br><span class="line">oozie.service.callablequeueservice.callable.concurrency </span><br><span class="line"><span class="meta">#</span><span class="bash">（队列大小）</span> </span><br><span class="line">oozie.service.callablequeueservice.queue.size </span><br><span class="line"><span class="meta">#</span><span class="bash">（扩展）一些扩展相关</span> </span><br><span class="line">oozie.service.ActionService.executor.ext.classes </span><br></pre></td></tr></table></figure>
-
-
-
-<p><img src="https://i.loli.net/2020/01/14/G8mDKH1OL4IVP2n.png" alt="clipboard.png"></p>
-<h5 id="5-3-oozie元数据更改"><a href="#5-3-oozie元数据更改" class="headerlink" title="5.3.oozie元数据更改"></a><strong>5.3.oozie元数据更改</strong></h5><p>ambari配置oozie元数据</p>
-<p><img src="https://i.loli.net/2020/01/14/yWdjMbr57aJRAcE.png" alt="clipboard1.png"></p>
+<p><img src="https://i.loli.net/2020/01/14/G8mDKH1OL4IVP2n.png" alt="clipboard.png" /></p>
+<h5 id="53oozie元数据更改"><a class="markdownIt-Anchor" href="#53oozie元数据更改"></a> <strong>5.3.oozie元数据更改</strong></h5>
+<p>ambari配置oozie元数据</p>
+<p><img src="https://i.loli.net/2020/01/14/yWdjMbr57aJRAcE.png" alt="clipboard1.png" /></p>
 <p>Ambari默认数据库为Derby.</p>
 <p>我们配置时,无特殊需求情况下,一般默认选择mysql</p>
 <p>选择数据库类型,库名,用户名,url连接串,驱动,密码</p>
 <p>测试连接成功即可.</p>
-<h5 id="5-4-ext2-2添加"><a href="#5-4-ext2-2添加" class="headerlink" title="5.4.ext2.2添加"></a><strong>5.4.ext2.2添加</strong></h5><p>进入oozie文件夹</p>
-<p>将ext-2.2.tar.gz解压放到./libext/ext-2.2目录下 </p>
-<h5 id="5-5-第三方jar包添加"><a href="#5-5-第三方jar包添加" class="headerlink" title="5.5.第三方jar包添加"></a><strong>5.5.第三方jar包添加</strong></h5><ul>
+<h5 id="54ext22添加"><a class="markdownIt-Anchor" href="#54ext22添加"></a> <strong>5.4.ext2.2添加</strong></h5>
+<p>进入oozie文件夹</p>
+<p>将ext-2.2.tar.gz解压放到./libext/ext-2.2目录下</p>
+<h5 id="55第三方jar包添加"><a class="markdownIt-Anchor" href="#55第三方jar包添加"></a> <strong>5.5.第三方jar包添加</strong></h5>
+<ul>
 <li>运行时的共享目录(在HDFS下)</li>
 <li>libserver目录</li>
 <li>libtools目录</li>
 </ul>
-<h4 id="六-Oozie管理"><a href="#六-Oozie管理" class="headerlink" title="六.Oozie管理"></a><strong>六.Oozie管理</strong></h4><h5 id="6-1-Oozie管理Web界面"><a href="#6-1-Oozie管理Web界面" class="headerlink" title="6.1.Oozie管理Web界面"></a><strong>6.1.Oozie管理Web界面</strong></h5><p><a href="http://ip:11000/oozie/">http://ip:11000/oozie/</a></p>
+<h4 id="六oozie管理"><a class="markdownIt-Anchor" href="#六oozie管理"></a> <strong>六.Oozie管理</strong></h4>
+<h5 id="61oozie管理web界面"><a class="markdownIt-Anchor" href="#61oozie管理web界面"></a> <strong>6.1.Oozie管理Web界面</strong></h5>
+<p><a href="http://ip:11000/oozie/">http://ip:11000/oozie/</a></p>
 <p>这里有时候会出现oozieUI界面无法访问问题,之后更新一篇文章,简单说明一下.</p>
-<h5 id="6-2-oozie使用"><a href="#6-2-oozie使用" class="headerlink" title="6.2.oozie使用"></a><strong>6.2.oozie使用</strong></h5><ul>
+<h5 id="62oozie使用"><a class="markdownIt-Anchor" href="#62oozie使用"></a> <strong>6.2.oozie使用</strong></h5>
+<ul>
 <li>任务列表查看</li>
 <li>任务状态查看</li>
 <li>流程返回信息</li>
@@ -336,15 +355,17 @@
 <li>日志查看</li>
 <li>系统信息查看和配置</li>
 </ul>
-<p><img src="https://i.loli.net/2020/01/14/UZM2XEcCDoFLWqe.png" alt="clipboard2.png"></p>
-<h5 id="6-3-状态识别"><a href="#6-3-状态识别" class="headerlink" title="6.3.状态识别"></a><strong>6.3.状态识别</strong></h5><table>
+<p><img src="https://i.loli.net/2020/01/14/UZM2XEcCDoFLWqe.png" alt="clipboard2.png" /></p>
+<h5 id="63状态识别"><a class="markdownIt-Anchor" href="#63状态识别"></a> <strong>6.3.状态识别</strong></h5>
+<table>
 <thead>
 <tr>
 <th>状态</th>
 <th>含义说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>PREP</td>
 <td>一个工作流Job第一次创建将处于PREP状态，表示工作流Job已经定义，但是没有运行。</td>
 </tr>
@@ -368,8 +389,9 @@
 <td>FAILED</td>
 <td>当一个工作流Job不可预期的错误失败而终止，就会变成FAILED状态。</td>
 </tr>
-</tbody></table>
-<p><img src="https://i.loli.net/2020/01/14/bQ3efSHzNov2IPk.png" alt="clipboard3.png"></p>
+</tbody>
+</table>
+<p><img src="https://i.loli.net/2020/01/14/bQ3efSHzNov2IPk.png" alt="clipboard3.png" /></p>
 <p><strong>我是鲁边, 2020 peace and love</strong></p>
 <p>别惊讶,今年的主题就是爱与和平,但愿我能一直用下去…</p>
 <p>按例按例，我的个人公众号：鲁边社，欢迎关注</p>
@@ -384,61 +406,65 @@
   </entry>
   <entry>
     <title>关于我</title>
-    <url>/2019/01/about/</url>
+    <url>/p/9ff79b23.html</url>
     <content><![CDATA[<blockquote>
 <p>A Coder, live in Beijing, China.</p>
 <p>与其坐而论道,不如起而行之</p>
 </blockquote>
-<p>GitHub: <a href="https://github.com/lubians">lubians</a><br>Email: <a href="mailto:&#x66;&#x74;&#x6f;&#x6e;&#103;&#x79;&#117;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#x66;&#x74;&#x6f;&#x6e;&#103;&#x79;&#117;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a><br>QQ: <a href="http://wpa.qq.com/msgrd?v=3&uin=373073314&site=qq&menu=yes">373073314</a><br>微信: jiangdajien</p>
+<p>GitHub: <a href="https://github.com/lubians">lubians</a><br />
+Email: <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=ftongyu@foxmail.com">ftongyu@foxmail.com</a><br />
+QQ: <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=373073314&amp;site=qq&amp;menu=yes">373073314</a><br />
+微信: jiangdajien</p>
 <span id="more"></span>
-
 <!-- ![avatar.jpg](https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg) -->
-
 <p>获取资源和关注我的动态，可扫码关注下方我的公众号二维码，后台回复关键字获取</p>
 <p>个人微信公众号：鲁边社(lubians)</p>
 <img src="https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg" alt="avatar" width="300" />]]></content>
   </entry>
   <entry>
     <title>个人简介</title>
-    <url>/2019/12/lubians/</url>
-    <content><![CDATA[<h5 id="王晓东"><a href="#王晓东" class="headerlink" title="王晓东"></a>王晓东</h5><p>身高八尺有余</p>
+    <url>/p/35221811.html</url>
+    <content><![CDATA[<h5 id="王晓东"><a class="markdownIt-Anchor" href="#王晓东"></a> 王晓东</h5>
+<p>身高八尺有余</p>
 ]]></content>
       <tags>
         <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
+    <title>nihaoya</title>
+    <url>/p/c40505d2.html</url>
+    <content><![CDATA[<span id="more"></span>
+<p>nihaohahahh</p>
+]]></content>
+      <tags>
+        <tag>旅行</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqoop定时导入(全量+增量)sqlserver数据到HDFS</title>
-    <url>/2018/05/sqoopImportSqlserver/</url>
+    <url>/p/e2afd3d7.html</url>
     <content><![CDATA[<p>公司使用到的是SQLServer数据库,目前需要将数据库数据导入HDFS,通过Hive的ETl进行数据处理和数据分析,在整个项目的完成中,将一些基础的操作方式记录下来,后续会更新在工作中遇到的一些问题.</p>
 <span id="more"></span>
-
-
-
-<h4 id="1-增量导入"><a href="#1-增量导入" class="headerlink" title="1.增量导入"></a>1.增量导入</h4><p>增量导入采用创建sqoop job的形式,定时加载job即可</p>
+<h4 id="1增量导入"><a class="markdownIt-Anchor" href="#1增量导入"></a> 1.增量导入</h4>
+<p>增量导入采用创建sqoop job的形式,定时加载job即可</p>
 <p>创建job</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bin/sqoop job \</span><br><span class="line">--create s_ods_ol_user_app \</span><br><span class="line">-- import \</span><br><span class="line">--connect &#x27;jdbc:sqlserver://10.31.24.236:1433;database=ODS_DB_V3&#x27; \</span><br><span class="line">--username &#x27;dss&#x27; \</span><br><span class="line">--password &#x27;1234QWER!@#$&#x27; \</span><br><span class="line">--table &#x27;ods_ol_user_app&#x27; \</span><br><span class="line">--target-dir /sqoopresult/ODS_DB_V3/ods_ol_user_app \</span><br><span class="line">--incremental append  \</span><br><span class="line">--check-column SequenceNO  \</span><br><span class="line">--last-value 23637191 \</span><br><span class="line">--m 1bin/sqoop job \</span><br><span class="line">--create s_ods_ol_user_app \</span><br><span class="line">-- import \</span><br><span class="line">--connect &#x27;jdbc:sqlserver://10.31.24.236:1433;database=ODS_DB_V3&#x27; \</span><br><span class="line">--username &#x27;dss&#x27; \</span><br><span class="line">--password &#x27;1234QWER!@#$&#x27; \</span><br><span class="line">--table &#x27;ods_ol_user_app&#x27; \</span><br><span class="line">--target-dir /sqoopresult/ODS_DB_V3/ods_ol_user_app \</span><br><span class="line">--incremental append  \</span><br><span class="line">--check-column SequenceNO  \</span><br><span class="line">--last-value 23637191 \</span><br><span class="line">--m 1</span><br></pre></td></tr></table></figure>
-
 <p>执行job</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sqoop job --exec s_ods_ol_user_appsqoop job --exec s_ods_ol_user_app</span><br></pre></td></tr></table></figure>
-
 <p>显示job信息</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sqoop job --show s_ods_ol_user_appsqoop job --show s_ods_ol_user_app</span><br></pre></td></tr></table></figure>
-
 <p>删除job</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sqoop job --delete s_ods_ol_user_appsqoop job --delete s_ods_ol_user_app</span><br></pre></td></tr></table></figure>
-
 <p>配置定时</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br><span class="line">0 */1 * * *  /usr/hdp/2.6.3.0-235/sqoop/bin/sqoop job \</span><br><span class="line">--exec s_ods_ol_user_app &gt; s_ods_ol_user_app.out 2&gt;&amp;1 &amp;crontab -e</span><br><span class="line">0 */1 * * *  /usr/hdp/2.6.3.0-235/sqoop/bin/sqoop job \</span><br><span class="line">--exec s_ods_ol_user_app &gt; s_ods_ol_user_app.out 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-
 <p>2&gt;&amp;1 &amp;的意思是后台静默执行</p>
-<h4 id="2-全量导入"><a href="#2-全量导入" class="headerlink" title="2.全量导入"></a>2.全量导入</h4><p>全量定时采用shell脚本</p>
+<h4 id="2全量导入"><a class="markdownIt-Anchor" href="#2全量导入"></a> 2.全量导入</h4>
+<p>全量定时采用shell脚本</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi import_ODS.sh</span><br><span class="line"># !/bin/bash</span><br><span class="line"></span><br><span class="line">#删除之前的内容</span><br><span class="line"></span><br><span class="line">hadoop fs -rm -r /sqoopresult/ODS_DB_V3/ods_btp_supplier</span><br><span class="line">hadoop fs -rm -r /sqoopresult/ODS_DB_V3/ods_btp_Commodity_discount_info</span><br><span class="line"></span><br><span class="line">#重新导入命令</span><br><span class="line"></span><br><span class="line">/usr/hdp/2.6.3.0-235/sqoop/bin/sqoop import \</span><br><span class="line">--connect &#x27;jdbc:sqlserver://10.31.24.236:1433;database=ODS_DB_V3&#x27; \</span><br><span class="line">--username &#x27;dss&#x27; \</span><br><span class="line">--password &#x27;1234QWER!@#$&#x27; \</span><br><span class="line">--table &#x27;ods_btp_supplier&#x27; \</span><br><span class="line">--target-dir /sqoopresult/ODS_DB_V3/ods_btp_supplier \</span><br><span class="line">--m 1</span><br><span class="line"></span><br><span class="line">/usr/hdp/2.6.3.0-235/sqoop/bin/sqoop import \</span><br><span class="line">--connect &#x27;jdbc:sqlserver://10.31.24.236:1433;database=ODS_DB_V3&#x27; \</span><br><span class="line">--username &#x27;dss&#x27; \</span><br><span class="line">--password &#x27;1234QWER!@#$&#x27; \</span><br><span class="line">--table &#x27;ods_btp_Commodity_discount_info&#x27; \</span><br><span class="line">--target-dir /sqoopresult/ODS_DB_V3/ods_btp_Commodity_discount_info \</span><br><span class="line">--m 1# !/bin/bash</span><br><span class="line"></span><br><span class="line">#删除之前的内容</span><br><span class="line"></span><br><span class="line">hadoop fs -rm -r /sqoopresult/ODS_DB_V3/ods_btp_supplier</span><br><span class="line">hadoop fs -rm -r /sqoopresult/ODS_DB_V3/ods_btp_Commodity_discount_info</span><br><span class="line"></span><br><span class="line">#重新导入命令</span><br><span class="line"></span><br><span class="line">/usr/hdp/2.6.3.0-235/sqoop/bin/sqoop import \</span><br><span class="line">--connect &#x27;jdbc:sqlserver://10.31.24.236:1433;database=ODS_DB_V3&#x27; \</span><br><span class="line">--username &#x27;dss&#x27; \</span><br><span class="line">--password &#x27;1234QWER!@#$&#x27; \</span><br><span class="line">--table &#x27;ods_btp_supplier&#x27; \</span><br><span class="line">--target-dir /sqoopresult/ODS_DB_V3/ods_btp_supplier \</span><br><span class="line">--m 1</span><br><span class="line"></span><br><span class="line">/usr/hdp/2.6.3.0-235/sqoop/bin/sqoop import \</span><br><span class="line">--connect &#x27;jdbc:sqlserver://10.31.24.236:1433;database=ODS_DB_V3&#x27; \</span><br><span class="line">--username &#x27;dss&#x27; \</span><br><span class="line">--password &#x27;1234QWER!@#$&#x27; \</span><br><span class="line">--table &#x27;ods_btp_Commodity_discount_info&#x27; \</span><br><span class="line">--target-dir /sqoopresult/ODS_DB_V3/ods_btp_Commodity_discount_info \</span><br><span class="line">--m 1</span><br></pre></td></tr></table></figure>
-
 <p>配置定时</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0 0 * * */usr/hdp/2.6.3.0-235/sqoop/import_ODS.sh &gt; /usr/hdp/2.6.3.0-235/sqoop/data/sqoop_`date +\%Y\%m\%d\%H\%M\%S`.log 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
-
-<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动"></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="点击并拖拽以移动" /></p>
 ]]></content>
       <categories>
         <category>sqoop</category>
@@ -451,38 +477,46 @@
   </entry>
   <entry>
     <title>大数据技术栈详解</title>
-    <url>/2021/01/bdDetailInfo/</url>
-    <content><![CDATA[<h3 id="一-技术栈结构"><a href="#一-技术栈结构" class="headerlink" title="一.技术栈结构"></a>一.技术栈结构</h3><p><img src="E:\博客图片\大数据技术栈\大数据技术栈.jpg" alt="大数据技术栈"></p>
-<h3 id="二-Hadoop"><a href="#二-Hadoop" class="headerlink" title="二.Hadoop"></a>二.Hadoop</h3><h4 id="1-广义Hadoop"><a href="#1-广义Hadoop" class="headerlink" title="1.广义Hadoop"></a>1.广义Hadoop</h4><p>Hadoop在广义上来说是Hadoop生态圈,包含大量用于大数据存储,管理,传输,分析计算的框架.</p>
+    <url>/p/9bbfa62c.html</url>
+    <content><![CDATA[<h3 id="一技术栈结构"><a class="markdownIt-Anchor" href="#一技术栈结构"></a> 一.技术栈结构</h3>
+<p><img src="E:%5C%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%5C%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E6%A0%88%5C%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E6%A0%88.jpg" alt="大数据技术栈" /></p>
+<h3 id="二hadoop"><a class="markdownIt-Anchor" href="#二hadoop"></a> 二.Hadoop</h3>
+<h4 id="1广义hadoop"><a class="markdownIt-Anchor" href="#1广义hadoop"></a> 1.广义Hadoop</h4>
+<p>Hadoop在广义上来说是Hadoop生态圈,包含大量用于大数据存储,管理,传输,分析计算的框架.</p>
 <span id="more"></span>
-
 <p>框架描述如下图:</p>
-<p><img src="E:\博客图片\大数据技术栈\15883010-44e5e07f7bf214f2.png" alt="15883010-44e5e07f7bf214f2"></p>
-<h4 id="2-狭义Hadoop"><a href="#2-狭义Hadoop" class="headerlink" title="2.狭义Hadoop"></a>2.狭义Hadoop</h4><p>狭义上的Hadoop是一个Apache下开源的分布式系统基础框架,主要解决海量数据的存储和分析计算问题.</p>
+<p><img src="E:%5C%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%5C%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E6%A0%88%5C15883010-44e5e07f7bf214f2.png" alt="15883010-44e5e07f7bf214f2" /></p>
+<h4 id="2狭义hadoop"><a class="markdownIt-Anchor" href="#2狭义hadoop"></a> 2.狭义Hadoop</h4>
+<p>狭义上的Hadoop是一个Apache下开源的分布式系统基础框架,主要解决海量数据的存储和分析计算问题.</p>
 <p>Hadoop的组成:</p>
-<p><img src="E:\博客图片\大数据技术栈\Hadoop.png" alt="Hadoop"></p>
-<h5 id="2-1-HDFS"><a href="#2-1-HDFS" class="headerlink" title="2.1.HDFS"></a>2.1.HDFS</h5><p>Hadoop实现了一个分布式文件系统(Hadoop Distributed File System),简称HDFS.</p>
+<p><img src="E:%5C%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%5C%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E6%A0%88%5CHadoop.png" alt="Hadoop" /></p>
+<h5 id="21hdfs"><a class="markdownIt-Anchor" href="#21hdfs"></a> 2.1.HDFS</h5>
+<p>Hadoop实现了一个分布式文件系统(Hadoop Distributed File System),简称HDFS.</p>
 <p>Hadoop分布式文件系统(HDFS)被设计成适合运行在通用硬件(commodity hardware)上的分布式文件系统.它和现有的分布式文件系统有很多共同点.但同时,它和其他的分布式文件系统的区别也是很明显的.</p>
 <p>HDFS是一个高度容错性的系统,适合部署在廉价的机器上.HDFS能提供高吞吐量的数据访问,非常适合大规模数据集上的应用.HDFS放宽了(relax)POSIX(可移植操作系统接口 Portable Operating System Interface of UNIX)的要求,可以以流的形式访问(Streaming access)文件系统中的数据.</p>
 <p>HDFS在最开始是作为Apache Nutch搜索引擎项目的基础架构而开发的,是Apache Hadoop Core项目的一部分.HDFS有着高容错性(fault-tolerant)的特点,并且设计用来部署在低廉的(low-cost)硬件上;而且它提供高吞吐量(high throughput)来访问应用程序的数据,适合那些有这超大数据集(large data set)的应用程序.</p>
-<h5 id="2-2-MapReduce"><a href="#2-2-MapReduce" class="headerlink" title="2.2.MapReduce"></a>2.2.MapReduce</h5><p>MapReduce是一种编程模型,其理论来自Google公司发表的三篇论文(<strong>MapReduce,BigTable,GFS</strong>)之一,主要应用于海量数据的并行计算.</p>
+<h5 id="22mapreduce"><a class="markdownIt-Anchor" href="#22mapreduce"></a> 2.2.MapReduce</h5>
+<p>MapReduce是一种编程模型,其理论来自Google公司发表的三篇论文(<strong>MapReduce,BigTable,GFS</strong>)之一,主要应用于海量数据的并行计算.</p>
 <p>MapReduce可以分成<strong>Map</strong>和<strong>Reduce</strong>两部分理解.</p>
 <p>Map:映射过程,把一组数据按照某种Map函数映射成新的数据.</p>
 <p>Reduce:归约过程,把若干组映射结果进行汇总并输出.</p>
 <p>Hadoop实现了Google的MapReduce编程模型和框架,能够把应用程序分割成许多的小的工作单元,并把这些单元放到任何集群节点上执行.</p>
 <p>MapReduce是Hadoop中的一个数据运算核心模块,MapReduce通过JobClient生成任务运行文件,并在JobTracker进行调度指派TaskTracker完成任务.</p>
-<p><img src="E:\博客图片\大数据技术栈\0b55b319ebc4b745ba5d74f7c1fc1e178b821502.png" alt="0b55b319ebc4b745ba5d74f7c1fc1e178b821502"></p>
-<h5 id="2-3-Yarn"><a href="#2-3-Yarn" class="headerlink" title="2.3.Yarn"></a>2.3.Yarn</h5><p>YARN是一个资源调度平台,负责为运算程序提供服务器运算资源,相当于一个分布式的操作系统平台,而MapReduce等运算程序则相当于运行于操作系统之上的应用程序.</p>
-<p>　　YARN是Hadoop2.x版本中的一个新特性.它的出现其实是为了解决第一代MapReduce编程框架的不足,提高集群环境下的资源利用率,这些资源包括内存,磁盘,网络,IO等.Hadoop2.X 版本中重新设计的这个YARN集群,具有更好的扩展性,可用性,可靠性,向后兼容性,以 及能支持除MapReduce以外的更多分布式计算程序.</p>
+<p><img src="E:%5C%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%5C%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E6%A0%88%5C0b55b319ebc4b745ba5d74f7c1fc1e178b821502.png" alt="0b55b319ebc4b745ba5d74f7c1fc1e178b821502" /></p>
+<h5 id="23yarn"><a class="markdownIt-Anchor" href="#23yarn"></a> 2.3.Yarn</h5>
+<p>YARN是一个资源调度平台,负责为运算程序提供服务器运算资源,相当于一个分布式的操作系统平台,而MapReduce等运算程序则相当于运行于操作系统之上的应用程序.</p>
+<p>YARN是Hadoop2.x版本中的一个新特性.它的出现其实是为了解决第一代MapReduce编程框架的不足,提高集群环境下的资源利用率,这些资源包括内存,磁盘,网络,IO等.Hadoop2.X 版本中重新设计的这个YARN集群,具有更好的扩展性,可用性,可靠性,向后兼容性,以 及能支持除MapReduce以外的更多分布式计算程序.</p>
 <p>Yarn的特点</p>
 <p>1.Yarn并不清楚用户提交的程序的运行机制.</p>
 <p>2.Yarn只提供运算资源的调度(用户程序向Yarn申请资源,Yarn就负责分配资源).</p>
 <p>3.Yarn中的主管角色叫ResourceManager.</p>
 <p>4.Yarn中具体提供运算资源的角色叫NodeManager.</p>
-<p>5.这样一来,Yarn其实就与运行的用户程序完全解耦,就意味着Yarn上可以运行各种类型的分布式运算程序(MapReduce只是其中的一种),比如MapReduce,Storm程序,Spark程序,Tez……</p>
+<p>5.这样一来,Yarn其实就与运行的用户程序完全解耦,就意味着Yarn上可以运行各种类型的分布式运算程序(MapReduce只是其中的一种),比如MapReduce,Storm程序,Spark程序,Tez…</p>
 <p>6.Spark,Storm,Flink等运算框架都可以整合在Yarn上运行,只要他们各自框架中有符合Yarn规范的资源请求机制即可.</p>
 <p>7.Yarn就成为一个通用的资源调度平台,从此,企业中以前存在的各种运算集群都可以整合在一个物理集群上,提高资源利用率,方便数据共享.</p>
-<h3 id="三-集群管理"><a href="#三-集群管理" class="headerlink" title="三.集群管理"></a>三.集群管理</h3><h4 id="1-Ambari集群管理工具"><a href="#1-Ambari集群管理工具" class="headerlink" title="1.Ambari集群管理工具"></a>1.Ambari集群管理工具</h4><p>Apache Ambari是一种基于Web的工具,支持Apache Hadoop集群的创建,管理和监控.Ambari已支持大多数Hadoop组件,包括HDFS,MapReduce,Hive,Pig, Hbase,Zookeeper,Sqoop和Hcatalog等.用一句话来说,Ambari就是为了让Hadoop以及相关的大数据软件更容易使用的一个工具.</p>
+<h3 id="三集群管理"><a class="markdownIt-Anchor" href="#三集群管理"></a> 三.集群管理</h3>
+<h4 id="1ambari集群管理工具"><a class="markdownIt-Anchor" href="#1ambari集群管理工具"></a> 1.Ambari集群管理工具</h4>
+<p>Apache Ambari是一种基于Web的工具,支持Apache Hadoop集群的创建,管理和监控.Ambari已支持大多数Hadoop组件,包括HDFS,MapReduce,Hive,Pig, Hbase,Zookeeper,Sqoop和Hcatalog等.用一句话来说,Ambari就是为了让Hadoop以及相关的大数据软件更容易使用的一个工具.</p>
 <p>Ambari 自身也是一个分布式架构的软件,主要由两部分组成:Ambari Server 和 Ambari Agent.简单来说,用户通过 Ambari Server 通知 Ambari Agent 安装对应的软件:Agent会定时地发送各个机器每个软件模块的状态给 Ambari Server,最终这些状态信息会呈现在 Ambari 的 GUI,方便用户了解到集群的各种状态,并进行相应的维护.</p>
 ]]></content>
       <tags>
@@ -491,7 +525,7 @@
   </entry>
   <entry>
     <title>手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题</title>
-    <url>/2020/01/UploadPy2andyum/</url>
+    <url>/p/d674a3f4.html</url>
     <content><![CDATA[<p><strong>摘要:</strong></p>
 <p>从标题就能看到我有多心如死灰了,简单介绍下我是如何自残的过程.</p>
 <p>①首先因为需要部署爬虫程序,然后安装Python3.</p>
@@ -500,53 +534,57 @@
 <p>④我开始使用yum命令安装Python3.8的相关依赖.</p>
 <p>⑤结果是发现yum不可用了,如下报错信息</p>
 <span id="more"></span>
-
-
-
-<p><img src="https://i.loli.net/2020/01/14/MAYCzBHr5gcZjNn.png" alt="2019062019501228.png"><br>网上找的截图,大概类似,服务器问题已经处理好了,不可能再删一次!_!</p>
+<p><img src="https://i.loli.net/2020/01/14/MAYCzBHr5gcZjNn.png" alt="2019062019501228.png" /><br />
+网上找的截图,大概类似,服务器问题已经处理好了,不可能再删一次!_!</p>
 <p>看到问题提示才知道是自己给自己挖了一个坑,心情一度灰暗到连晚饭都不想吃,最后?最后我就去聚餐去了,哈哈哈.</p>
-<h4 id="一-面临问题"><a href="#一-面临问题" class="headerlink" title="一.面临问题"></a>一.面临问题</h4><p>因为卸载了Python2.7不仅是yum不可用了,我的ambari集群的那台机器也一度陷入了瘫痪之中,web界面一片飘红,当时我有想通过命令</p>
+<h4 id="一面临问题"><a class="markdownIt-Anchor" href="#一面临问题"></a> 一.面临问题</h4>
+<p>因为卸载了Python2.7不仅是yum不可用了,我的ambari集群的那台机器也一度陷入了瘫痪之中,web界面一片飘红,当时我有想通过命令</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rm -rf /*</span><br></pre></td></tr></table></figure>
-
 <p>删了那个机器的冲动.简单点说,面临的问题就是要回复原来的状态.</p>
 <p>整个思路是这样的,没有了Python2.7,我就需先把Linux服务器依赖的Python2.7的包重新安装上,再看有没有其他问题,如果没有,好万事大吉,如果有,再看提示,开始干活.</p>
 <p><strong>该处理过程也适用于 yum因python版本无法使用的问题,不同的版本类型的机器,切记把机器版本号替换一下就可以了.</strong></p>
-<h4 id="二-检查是否删除彻底"><a href="#二-检查是否删除彻底" class="headerlink" title="二.检查是否删除彻底"></a>二.检查是否删除彻底</h4><h5 id="2-1-检查Python2-7是否卸载干净了"><a href="#2-1-检查Python2-7是否卸载干净了" class="headerlink" title="2.1.检查Python2.7是否卸载干净了"></a>2.1.检查Python2.7是否卸载干净了</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">卸载python</span></span><br><span class="line">rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#删除所有残余文件</span></span></span><br><span class="line">whereis python |xargs rm -frv   </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#验证删除，返回无结果</span></span></span><br><span class="line">whereis python </span><br></pre></td></tr></table></figure>
-
-<h5 id="2-2-删除现有的yum"><a href="#2-2-删除现有的yum" class="headerlink" title="2.2.删除现有的yum"></a>2.2.删除现有的yum</h5><p>不可用了就先删掉,以防依赖出错</p>
+<h4 id="二检查是否删除彻底"><a class="markdownIt-Anchor" href="#二检查是否删除彻底"></a> 二.检查是否删除彻底</h4>
+<h5 id="21检查python27是否卸载干净了"><a class="markdownIt-Anchor" href="#21检查python27是否卸载干净了"></a> 2.1.检查Python2.7是否卸载干净了</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">卸载python</span></span><br><span class="line">rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#删除所有残余文件</span></span></span><br><span class="line">whereis python |xargs rm -frv   </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#验证删除，返回无结果</span></span></span><br><span class="line">whereis python </span><br></pre></td></tr></table></figure>
+<h5 id="22删除现有的yum"><a class="markdownIt-Anchor" href="#22删除现有的yum"></a> 2.2.删除现有的yum</h5>
+<p>不可用了就先删掉,以防依赖出错</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">删除yum</span></span><br><span class="line">rpm -qa|grep yum|xargs rpm -ev --allmatches --nodeps </span><br><span class="line"><span class="meta">#</span><span class="bash">删除残留文件</span></span><br><span class="line">whereis yum |xargs rm -frv </span><br><span class="line"><span class="meta">#</span><span class="bash">验证删除完成,返回无结果</span></span><br><span class="line">whereis yum </span><br></pre></td></tr></table></figure>
-
-<h4 id="三-下载安装恢复"><a href="#三-下载安装恢复" class="headerlink" title="三.下载安装恢复"></a>三.下载安装恢复</h4><h5 id="3-1-查看linux版本"><a href="#3-1-查看linux版本" class="headerlink" title="3.1.查看linux版本"></a>3.1.查看linux版本</h5><p>安装Python2.7的依赖包,就要找到Linux的版本号,经查我的版本号是:</p>
+<h4 id="三下载安装恢复"><a class="markdownIt-Anchor" href="#三下载安装恢复"></a> 三.下载安装恢复</h4>
+<h5 id="31查看linux版本"><a class="markdownIt-Anchor" href="#31查看linux版本"></a> 3.1.查看linux版本</h5>
+<p>安装Python2.7的依赖包,就要找到Linux的版本号,经查我的版本号是:</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">命令</span></span><br><span class="line">cat /etc/redhat-release</span><br><span class="line"><span class="meta">#</span><span class="bash">版本号</span></span><br><span class="line">CentOS Linux release 7.4.1708</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-2-在官方网站找到对应的包"><a href="#3-2-在官方网站找到对应的包" class="headerlink" title="3.2.在官方网站找到对应的包"></a>3.2.在官方网站找到对应的包</h5><p>查到版本号之后我就需要从官方网站(<strong>小红帽,这里注意你的CentOS是哪个厂家的</strong>)查找所依赖的几个指定包.</p>
+<h5 id="32在官方网站找到对应的包"><a class="markdownIt-Anchor" href="#32在官方网站找到对应的包"></a> 3.2.在官方网站找到对应的包</h5>
+<p>查到版本号之后我就需要从官方网站(<strong>小红帽,这里注意你的CentOS是哪个厂家的</strong>)查找所依赖的几个指定包.</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">官方网站</span></span><br><span class="line">http://vault.centos.org</span><br><span class="line"><span class="meta">#</span><span class="bash">我的版本号的官方网站http://vault.centos.org/7.4.1708/os/x86_64/Packages/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">如下7个包</span></span><br><span class="line">python-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">python-devel-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">python-iniparse-0.4-9.el7.noarch.rpm  </span><br><span class="line">python-pycurl-7.19.0-19.el7.x86_64.rpm   </span><br><span class="line">rpm-python-4.11.3-25.el7.x86_64.rpmpython-devel-2.7.5-58.el7.x86_64.rpm  </span><br><span class="line">python-libs-2.7.5-58.el7.x86_64.rpm   </span><br><span class="line">python-urlgrabber-3.10-8.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-3-下载安装Python包"><a href="#3-3-下载安装Python包" class="headerlink" title="3.3.下载安装Python包"></a>3.3.下载安装Python包</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> python安装</span></span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-devel-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-iniparse-0.4-9.el7.noarch.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-libs-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-pycurl-7.19.0-19.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-urlgrabber-3.10-8.el7.noarch.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/rpm-python-4.11.3-25.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-4-安装指定的yum包"><a href="#3-4-安装指定的yum包" class="headerlink" title="3.4.安装指定的yum包"></a>3.4.安装指定的yum包</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum安装</span></span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-3.4.3-154.el7.centos.noarch.rpm </span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm </span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.31-42.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
-
-<h4 id="四-收尾工作"><a href="#四-收尾工作" class="headerlink" title="四.收尾工作"></a>四.收尾工作</h4><h5 id="4-1-测试是否成功"><a href="#4-1-测试是否成功" class="headerlink" title="4.1.测试是否成功"></a>4.1.测试是否成功</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">验证python</span></span><br><span class="line">python</span><br><span class="line"><span class="meta">#</span><span class="bash">验证yum</span></span><br><span class="line">yum</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-2-总结"><a href="#4-2-总结" class="headerlink" title="4.2.总结"></a>4.2.总结</h5><p>这个故事告诉我们： </p>
+<h5 id="33下载安装python包"><a class="markdownIt-Anchor" href="#33下载安装python包"></a> 3.3.下载安装Python包</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> python安装</span></span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-devel-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-iniparse-0.4-9.el7.noarch.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-libs-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-pycurl-7.19.0-19.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-urlgrabber-3.10-8.el7.noarch.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/rpm-python-4.11.3-25.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<h5 id="34安装指定的yum包"><a class="markdownIt-Anchor" href="#34安装指定的yum包"></a> 3.4.安装指定的yum包</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum安装</span></span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-3.4.3-154.el7.centos.noarch.rpm </span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm </span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.31-42.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+<h4 id="四收尾工作"><a class="markdownIt-Anchor" href="#四收尾工作"></a> 四.收尾工作</h4>
+<h5 id="41测试是否成功"><a class="markdownIt-Anchor" href="#41测试是否成功"></a> 4.1.测试是否成功</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">验证python</span></span><br><span class="line">python</span><br><span class="line"><span class="meta">#</span><span class="bash">验证yum</span></span><br><span class="line">yum</span><br></pre></td></tr></table></figure>
+<h5 id="42总结"><a class="markdownIt-Anchor" href="#42总结"></a> 4.2.总结</h5>
+<p>这个故事告诉我们：</p>
 <p>① 在不懂的领域要多阅读相关资料,不要一开始就直接上。</p>
 <p>② 解决问题思路要清晰。</p>
-<h3 id="五-Python3一定要装"><a href="#五-Python3一定要装" class="headerlink" title="五.Python3一定要装"></a>五.Python3一定要装</h3><p>在不卸载Python2版本的同时使用Python3.*</p>
+<h3 id="五python3一定要装"><a class="markdownIt-Anchor" href="#五python3一定要装"></a> 五.Python3一定要装</h3>
+<p>在不卸载Python2版本的同时使用Python3.*</p>
 <p>环境:  centos7.4</p>
 <p>版本：python3.8</p>
-<h5 id="5-1-依赖包安装"><a href="#5-1-依赖包安装" class="headerlink" title="5.1.依赖包安装"></a>5.1.依赖包安装</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-2-下载包："><a href="#5-2-下载包：" class="headerlink" title="5.2.下载包："></a>5.2.下载包：</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载路径(里面有不同的版本)https://www.python.org/ftp/python/3.8.0/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">下载命令</span></span><br><span class="line">wget https://www.python.org/ftp/python/3.8.0/Python-3.8.tgz</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-3-解压："><a href="#5-3-解压：" class="headerlink" title="5.3.解压："></a>5.3.解压：</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf Python-3.8.0.tgz</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-4-安装："><a href="#5-4-安装：" class="headerlink" title="5.4.安装："></a>5.4.安装：</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Python-3.8.0</span><br><span class="line"><span class="meta">#</span><span class="bash">指定编译目录</span></span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line"><span class="meta">#</span><span class="bash">编译安装</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-5-建立软连接"><a href="#5-5-建立软连接" class="headerlink" title="5.5.建立软连接"></a>5.5.建立软连接</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3</span><br><span class="line">ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-6-测试一下python3是否可以用"><a href="#5-6-测试一下python3是否可以用" class="headerlink" title="5.6.测试一下python3是否可以用"></a>5.6.测试一下python3是否可以用</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python3</span><br><span class="line">pip3</span><br></pre></td></tr></table></figure>
-
-<h4 id="六-日常废话"><a href="#六-日常废话" class="headerlink" title="六.日常废话"></a>六.日常废话</h4><p>今天面临这个问题类似于一个新手问题,但是在很多时候,自己不了解的情况下反而容易出这种问题.</p>
+<h5 id="51依赖包安装"><a class="markdownIt-Anchor" href="#51依赖包安装"></a> 5.1.依赖包安装</h5>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</span><br></pre></td></tr></table></figure>
+<h5 id="52下载包"><a class="markdownIt-Anchor" href="#52下载包"></a> 5.2.下载包：</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载路径(里面有不同的版本)https://www.python.org/ftp/python/3.8.0/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">下载命令</span></span><br><span class="line">wget https://www.python.org/ftp/python/3.8.0/Python-3.8.tgz</span><br></pre></td></tr></table></figure>
+<h5 id="53解压"><a class="markdownIt-Anchor" href="#53解压"></a> 5.3.解压：</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf Python-3.8.0.tgz</span><br></pre></td></tr></table></figure>
+<h5 id="54安装"><a class="markdownIt-Anchor" href="#54安装"></a> 5.4.安装：</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd Python-3.8.0</span><br><span class="line"><span class="meta">#</span><span class="bash">指定编译目录</span></span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line"><span class="meta">#</span><span class="bash">编译安装</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h5 id="55建立软连接"><a class="markdownIt-Anchor" href="#55建立软连接"></a> 5.5.建立软连接</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3</span><br><span class="line">ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3</span><br></pre></td></tr></table></figure>
+<h5 id="56测试一下python3是否可以用"><a class="markdownIt-Anchor" href="#56测试一下python3是否可以用"></a> 5.6.测试一下python3是否可以用</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python3</span><br><span class="line">pip3</span><br></pre></td></tr></table></figure>
+<h4 id="六日常废话"><a class="markdownIt-Anchor" href="#六日常废话"></a> 六.日常废话</h4>
+<p>今天面临这个问题类似于一个新手问题,但是在很多时候,自己不了解的情况下反而容易出这种问题.</p>
 <p>那么就简单说说我们遇到相关的问题的一个解决思路吧.</p>
 <p>①遇到了什么问题,先定位问题是什么.</p>
 <p>②这个问题之前我们做了什么操作引起的相关问题,因为什么导致了这个问题出现.</p>
@@ -557,7 +595,7 @@
 <p>形成以上这种思维能更好的帮助自己处理实际工作中的问题.</p>
 <p><strong>我是鲁边,2020 peace and love.</strong></p>
 <p>按例，我的个人公众号：鲁边社，欢迎关注(后台回复 [<strong>机器学习</strong>] ,获取相关学习笔记)</p>
-<p><img src="https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg" alt="avatar"></p>
+<p><img src="https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg" alt="avatar" /></p>
 ]]></content>
       <tags>
         <tag>Linux</tag>
@@ -566,41 +604,55 @@
       </tags>
   </entry>
   <entry>
-    <title>nihaoya</title>
-    <url>/2020/01/HelloWorld/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>nihaohahahh</p>
-]]></content>
-      <tags>
-        <tag>旅行</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>最新IDEA永久激活攻略</title>
-    <url>/2020/01/ideagonglve/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>写这篇文章的原因是我最近想自己写两个项目,却发现自己的IDEA过期了,对,就是那个JAVA编辑器,于是研究了一下IDEA的激活.发现网上的攻略大多数不可用.</p>
+    <url>/p/4fd9d72f.html</url>
+    <content><![CDATA[<h3 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h3>
+<p>写这篇文章的原因是我最近想自己写两个项目,却发现自己的IDEA过期了,对,就是那个JAVA编辑器,于是研究了一下IDEA的激活.发现网上的攻略大多数不可用.</p>
 <span id="more"></span>
-
 <p>当然这里推荐大家去官网购买正版使用.下面是官网链接:</p>
-<p>请点击<a href="https://www.jetbrains.com/idea/buy/">https://www.jetbrains.com/idea/buy/</a></p>
-<p>购买正版，谢谢合作学生凭学生证可免费申请正版授权 | 创业公司可5折购买正版授权<br>但又由于自己已经不是学生了,无法免费申请注册,好了,不找这么多理由了,其实主要原因呢,还是穷,不然我就买正版去了.<br>下面直接开始. 此攻略支持最新版2019.3版本IDEA的永久激活,向下兼容.</p>
-<h3 id="1-激活前的准备工作"><a href="#1-激活前的准备工作" class="headerlink" title="1.激活前的准备工作"></a>1.激活前的准备工作</h3><p>如果在hosts里配置了jetbrains相关的项目,请移除</p>
-<h3 id="2-下载最新版破解补丁"><a href="#2-下载最新版破解补丁" class="headerlink" title="2.下载最新版破解补丁"></a>2.下载最新版破解补丁</h3><p><strong>公众号后台回复关键词 IDEA 下载补丁文件 jetbrains-agent.jar</strong> (在文末,或<a href="https://lubians.github.io/2019/01/about/">传送门</a>)<br>下载好之后将它放置到安装的IDEA目录下(位置可以随意放,这里主要是因为怕误操作删除了破解文件).<br><img src="https://i.loli.net/2020/01/11/WstSfQiEmTyZHkD.png"><br>ps:如果文件失效,可以直接联系我,重新发链接.</p>
-<h3 id="3-进入项目界面"><a href="#3-进入项目界面" class="headerlink" title="3.进入项目界面"></a>3.进入项目界面</h3><p>如果你之前已经使用过有效期激活可跳过此步骤,如果你和我一样是刚下载的IDEA,则需要点击激活窗口的”Evaluate for free”免费试用,然后再创建一个项目,这样就可以进入到IDEA的工作页面了.<br><img src="https://i.loli.net/2020/01/11/QkyzlRS3EioGvAr.png"><br><img src="https://i.loli.net/2020/01/11/O3bfgQHvwpGNDS9.png"><br><img src="https://i.loli.net/2020/01/11/O9HUos2dVnwG3eE.png"><br><img src="https://i.loli.net/2020/01/11/NEL17CQsrngkMiR.png"></p>
+<p>请点击https://www.jetbrains.com/idea/buy/</p>
+<p>购买正版，谢谢合作学生凭学生证可免费申请正版授权 | 创业公司可5折购买正版授权<br />
+但又由于自己已经不是学生了,无法免费申请注册,好了,不找这么多理由了,其实主要原因呢,还是穷,不然我就买正版去了.<br />
+下面直接开始. 此攻略支持最新版2019.3版本IDEA的永久激活,向下兼容.</p>
+<h3 id="1激活前的准备工作"><a class="markdownIt-Anchor" href="#1激活前的准备工作"></a> 1.激活前的准备工作</h3>
+<p>如果在hosts里配置了jetbrains相关的项目,请移除</p>
+<h3 id="2下载最新版破解补丁"><a class="markdownIt-Anchor" href="#2下载最新版破解补丁"></a> 2.下载最新版破解补丁</h3>
+<p><strong>公众号后台回复关键词 IDEA 下载补丁文件 jetbrains-agent.jar</strong> (在文末,或<a href="https://lubians.github.io/2019/01/about/">传送门</a>)<br />
+下载好之后将它放置到安装的IDEA目录下(位置可以随意放,这里主要是因为怕误操作删除了破解文件).<br />
+<img src="https://i.loli.net/2020/01/11/WstSfQiEmTyZHkD.png" alt="" /><br />
+ps:如果文件失效,可以直接联系我,重新发链接.</p>
+<h3 id="3进入项目界面"><a class="markdownIt-Anchor" href="#3进入项目界面"></a> 3.进入项目界面</h3>
+<p>如果你之前已经使用过有效期激活可跳过此步骤,如果你和我一样是刚下载的IDEA,则需要点击激活窗口的&quot;Evaluate for free&quot;免费试用,然后再创建一个项目,这样就可以进入到IDEA的工作页面了.<br />
+<img src="https://i.loli.net/2020/01/11/QkyzlRS3EioGvAr.png" alt="" /><br />
+<img src="https://i.loli.net/2020/01/11/O3bfgQHvwpGNDS9.png" alt="" /><br />
+<img src="https://i.loli.net/2020/01/11/O9HUos2dVnwG3eE.png" alt="" /><br />
+<img src="https://i.loli.net/2020/01/11/NEL17CQsrngkMiR.png" alt="" /></p>
 <p>什么?你不会基础配置IDEA,不会建项目?那你先学会再说,谢谢.</p>
-<h3 id="4-修改配置文件"><a href="#4-修改配置文件" class="headerlink" title="4.修改配置文件"></a>4.修改配置文件</h3><p>进入到项目界面后,点击IDEA最上面的菜单栏中的”Help” –&gt; “Edit Custom VM Options…” ,如果提示是否要创建文件,请点 “Create”<br><img src="https://i.loli.net/2020/01/11/IefNySFk5M2HGcR.png"></p>
+<h3 id="4修改配置文件"><a class="markdownIt-Anchor" href="#4修改配置文件"></a> 4.修改配置文件</h3>
+<p>进入到项目界面后,点击IDEA最上面的菜单栏中的&quot;Help&quot; --&gt; “Edit Custom VM Options…” ,如果提示是否要创建文件,请点 “Create”<br />
+<img src="https://i.loli.net/2020/01/11/IefNySFk5M2HGcR.png" alt="" /></p>
 <p>在打开的vmoptions文件编辑窗口末行添加 :</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-javaagent:你的破解补丁放置目录(大概率为你安装IDEA目录)\jetbrains-agent.jar</span><br></pre></td></tr></table></figure>
-
-<p>如下图:<br><img src="https://i.loli.net/2020/01/11/3zjcZSe2K1YE7LU.png"></p>
-<p>请仔细检查补丁路径是否正确，如果错误则会出现Idea打不开的情况，这时候可以删除用户配置目录下的Idea文件夹:windwos：<br>C:\Users\用户名</p>
+<p>如下图:<br />
+<img src="https://i.loli.net/2020/01/11/3zjcZSe2K1YE7LU.png" alt="" /></p>
+<p>请仔细检查补丁路径是否正确，如果错误则会出现Idea打不开的情况，这时候可以删除用户配置目录下的Idea文件夹:windwos：<br />
+C:\Users\用户名</p>
 <p><strong>本教程适用Windows、Mac、Ubuntu等所有平台.</strong></p>
-<p>修改完配置文件,重启IDEA<br>修改完配置文件,重启IDEA<br>修改完配置文件,重启IDEA<br>重要的话说三遍</p>
-<h3 id="5-输入激活码"><a href="#5-输入激活码" class="headerlink" title="5.输入激活码"></a>5.输入激活码</h3><p>重启IDEA之后,点击菜单栏中的 “Help” –&gt; “Register…”,这里有三种激活方式:我们选择最后一种激活方式,为啥不用前面两种?说了没钱<br>言归正传:</p>
-<p>选择最后一种License server激活方式，地址填入：<a href="http://jetbrains-license-server/">http://jetbrains-license-server</a> （应该会自动填上），或者点击按钮：”Discover Server”来自动填充地址，完成激活<br><img src="https://i.loli.net/2020/01/11/BQLaqeXDnHt4oMT.png"></p>
-<h3 id="6-查看有效期"><a href="#6-查看有效期" class="headerlink" title="6.查看有效期"></a>6.查看有效期</h3><p>激动人心的时刻来了,当你激活完毕后会出现两种可能,大概意思都是告诉你,兄弟,你的努力没有白费,终于白嫖了一回,你激活成功了.<br><img src="https://i.loli.net/2020/01/11/5tYgiISBsWNJKjw.png"><br><img src="https://i.loli.net/2020/01/11/PzmFYeKnRcabfNg.png"></p>
-<p>服务器激活是永久的,以后再也不用担心……嗯哼?<br><img src="https://i.loli.net/2020/01/11/I5rwpkDGJg1VBL8.png" alt="1920683-20200111133123417-639013409.png"></p>
+<p>修改完配置文件,重启IDEA<br />
+修改完配置文件,重启IDEA<br />
+修改完配置文件,重启IDEA<br />
+重要的话说三遍</p>
+<h3 id="5输入激活码"><a class="markdownIt-Anchor" href="#5输入激活码"></a> 5.输入激活码</h3>
+<p>重启IDEA之后,点击菜单栏中的 “Help” --&gt; “Register…”,这里有三种激活方式:我们选择最后一种激活方式,为啥不用前面两种?说了没钱<br />
+言归正传:</p>
+<p>选择最后一种License server激活方式，地址填入：<a href="http://jetbrains-license-server/">http://jetbrains-license-server</a> （应该会自动填上），或者点击按钮：”Discover Server”来自动填充地址，完成激活<br />
+<img src="https://i.loli.net/2020/01/11/BQLaqeXDnHt4oMT.png" alt="" /></p>
+<h3 id="6查看有效期"><a class="markdownIt-Anchor" href="#6查看有效期"></a> 6.查看有效期</h3>
+<p>激动人心的时刻来了,当你激活完毕后会出现两种可能,大概意思都是告诉你,兄弟,你的努力没有白费,终于白嫖了一回,你激活成功了.<br />
+<img src="https://i.loli.net/2020/01/11/5tYgiISBsWNJKjw.png" alt="" /><br />
+<img src="https://i.loli.net/2020/01/11/PzmFYeKnRcabfNg.png" alt="" /></p>
+<p>服务器激活是永久的,以后再也不用担心…嗯哼?<br />
+<img src="https://i.loli.net/2020/01/11/I5rwpkDGJg1VBL8.png" alt="1920683-20200111133123417-639013409.png" /></p>
 <p>说点煽情的话好么?别走,就两句.</p>
 <p>第一句:作为一个技术渣,资深IT民工,打算把自己代码传三代的码农一直玩世不恭,不务正业,在搞什么诗和远方,实在是舍本逐末,在某一日,天雷滚滚,好像我不清醒就要劈我一样,然后我就痛改前非,洗心革面,好好敲代码了,此篇福利先给诸多同行.</p>
 <p>第二句:如果已经关注了这个号的人,看到我发这个文章,不要怀疑,你一定是看错了,我还是一个拥有诗和远方的好青年,如果没关注这个号的人,那还说什么,点关注呀,<strong>本号长期关注大数据生态圈,会发一些相关的技术文章和大数据行业报道,主要还是技术.希望关注我的你和我一起进步.</strong></p>
@@ -608,7 +660,6 @@
 <p><strong>我是鲁边,2020 love and peace.</strong></p>
 <p>我的个人微信公众号:鲁边社，欢迎关注</p>
 <img src="https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg" alt="avatar" width="300" />
-
 ]]></content>
       <tags>
         <tag>随笔</tag>

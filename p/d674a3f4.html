@@ -23,14 +23,14 @@
 <meta name="description" content="摘要: 从标题就能看到我有多心如死灰了,简单介绍下我是如何自残的过程. ①首先因为需要部署爬虫程序,然后安装Python3. ②Python3系列和Python2系列版本不向下兼容,所以我就卸载了机器自带的Python2.7,删的干干净净. ③然后我下载了Python3.8的包. ④我开始使用yum命令安装Python3.8的相关依赖. ⑤结果是发现yum不可用了,如下报错信息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题">
-<meta property="og:url" content="https://lubians.github.io/2020/01/UploadPy2andyum/index.html">
+<meta property="og:url" content="https://lubians.github.io/p/d674a3f4.html">
 <meta property="og:site_name" content="鲁边">
 <meta property="og:description" content="摘要: 从标题就能看到我有多心如死灰了,简单介绍下我是如何自残的过程. ①首先因为需要部署爬虫程序,然后安装Python3. ②Python3系列和Python2系列版本不向下兼容,所以我就卸载了机器自带的Python2.7,删的干干净净. ③然后我下载了Python3.8的包. ④我开始使用yum命令安装Python3.8的相关依赖. ⑤结果是发现yum不可用了,如下报错信息">
 <meta property="og:locale">
 <meta property="og:image" content="https://i.loli.net/2020/01/14/MAYCzBHr5gcZjNn.png">
 <meta property="og:image" content="https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg">
 <meta property="article:published_time" content="2020-01-13T10:37:04.000Z">
-<meta property="article:modified_time" content="2020-01-14T03:12:28.236Z">
+<meta property="article:modified_time" content="2021-12-07T10:38:07.715Z">
 <meta property="article:author" content="lubians">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Python3">
@@ -39,11 +39,11 @@
 <meta name="twitter:image" content="https://i.loli.net/2020/01/14/MAYCzBHr5gcZjNn.png">
 
 
-<link rel="canonical" href="https://lubians.github.io/2020/01/UploadPy2andyum/">
+<link rel="canonical" href="https://lubians.github.io/p/d674a3f4.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://lubians.github.io/2020/01/UploadPy2andyum/","path":"2020/01/UploadPy2andyum/","title":"手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://lubians.github.io/p/d674a3f4.html","path":"p/d674a3f4.html","title":"手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题 | 鲁边</title>
@@ -99,6 +99,7 @@
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
         <li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+        <li class="menu-item menu-item-guestbook"><a href="/guestbook/" rel="section"><i class="fa fa-book fa-fw"></i>留言板</a></li>
         <li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -156,7 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80-%E9%9D%A2%E4%B8%B4%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">一.面临问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C-%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%88%A0%E9%99%A4%E5%BD%BB%E5%BA%95"><span class="nav-number">2.</span> <span class="nav-text">二.检查是否删除彻底</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E6%A3%80%E6%9F%A5Python2-7%E6%98%AF%E5%90%A6%E5%8D%B8%E8%BD%BD%E5%B9%B2%E5%87%80%E4%BA%86"><span class="nav-number">2.1.</span> <span class="nav-text">2.1.检查Python2.7是否卸载干净了</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-%E5%88%A0%E9%99%A4%E7%8E%B0%E6%9C%89%E7%9A%84yum"><span class="nav-number">2.2.</span> <span class="nav-text">2.2.删除现有的yum</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E6%81%A2%E5%A4%8D"><span class="nav-number">3.</span> <span class="nav-text">三.下载安装恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-%E6%9F%A5%E7%9C%8Blinux%E7%89%88%E6%9C%AC"><span class="nav-number">3.1.</span> <span class="nav-text">3.1.查看linux版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-%E5%9C%A8%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%E6%89%BE%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E5%8C%85"><span class="nav-number">3.2.</span> <span class="nav-text">3.2.在官方网站找到对应的包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Python%E5%8C%85"><span class="nav-number">3.3.</span> <span class="nav-text">3.3.下载安装Python包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-%E5%AE%89%E8%A3%85%E6%8C%87%E5%AE%9A%E7%9A%84yum%E5%8C%85"><span class="nav-number">3.4.</span> <span class="nav-text">3.4.安装指定的yum包</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B-%E6%94%B6%E5%B0%BE%E5%B7%A5%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">四.收尾工作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E6%B5%8B%E8%AF%95%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="nav-number">4.1.</span> <span class="nav-text">4.1.测试是否成功</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-%E6%80%BB%E7%BB%93"><span class="nav-number">4.2.</span> <span class="nav-text">4.2.总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94-Python3%E4%B8%80%E5%AE%9A%E8%A6%81%E8%A3%85"><span class="nav-number"></span> <span class="nav-text">五.Python3一定要装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-1-%E4%BE%9D%E8%B5%96%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-number">0.1.</span> <span class="nav-text">5.1.依赖包安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-2-%E4%B8%8B%E8%BD%BD%E5%8C%85%EF%BC%9A"><span class="nav-number">0.2.</span> <span class="nav-text">5.2.下载包：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-3-%E8%A7%A3%E5%8E%8B%EF%BC%9A"><span class="nav-number">0.3.</span> <span class="nav-text">5.3.解压：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-4-%E5%AE%89%E8%A3%85%EF%BC%9A"><span class="nav-number">0.4.</span> <span class="nav-text">5.4.安装：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-5-%E5%BB%BA%E7%AB%8B%E8%BD%AF%E8%BF%9E%E6%8E%A5"><span class="nav-number">0.5.</span> <span class="nav-text">5.5.建立软连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-6-%E6%B5%8B%E8%AF%95%E4%B8%80%E4%B8%8Bpython3%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E7%94%A8"><span class="nav-number">0.6.</span> <span class="nav-text">5.6.测试一下python3是否可以用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AD-%E6%97%A5%E5%B8%B8%E5%BA%9F%E8%AF%9D"><span class="nav-number">1.</span> <span class="nav-text">六.日常废话</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E9%9D%A2%E4%B8%B4%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text"> 一.面临问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%88%A0%E9%99%A4%E5%BD%BB%E5%BA%95"><span class="nav-number">2.</span> <span class="nav-text"> 二.检查是否删除彻底</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#21%E6%A3%80%E6%9F%A5python27%E6%98%AF%E5%90%A6%E5%8D%B8%E8%BD%BD%E5%B9%B2%E5%87%80%E4%BA%86"><span class="nav-number">2.1.</span> <span class="nav-text"> 2.1.检查Python2.7是否卸载干净了</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#22%E5%88%A0%E9%99%A4%E7%8E%B0%E6%9C%89%E7%9A%84yum"><span class="nav-number">2.2.</span> <span class="nav-text"> 2.2.删除现有的yum</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E6%81%A2%E5%A4%8D"><span class="nav-number">3.</span> <span class="nav-text"> 三.下载安装恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#31%E6%9F%A5%E7%9C%8Blinux%E7%89%88%E6%9C%AC"><span class="nav-number">3.1.</span> <span class="nav-text"> 3.1.查看linux版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#32%E5%9C%A8%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99%E6%89%BE%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E5%8C%85"><span class="nav-number">3.2.</span> <span class="nav-text"> 3.2.在官方网站找到对应的包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#33%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85python%E5%8C%85"><span class="nav-number">3.3.</span> <span class="nav-text"> 3.3.下载安装Python包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#34%E5%AE%89%E8%A3%85%E6%8C%87%E5%AE%9A%E7%9A%84yum%E5%8C%85"><span class="nav-number">3.4.</span> <span class="nav-text"> 3.4.安装指定的yum包</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E6%94%B6%E5%B0%BE%E5%B7%A5%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text"> 四.收尾工作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#41%E6%B5%8B%E8%AF%95%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="nav-number">4.1.</span> <span class="nav-text"> 4.1.测试是否成功</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#42%E6%80%BB%E7%BB%93"><span class="nav-number">4.2.</span> <span class="nav-text"> 4.2.总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94python3%E4%B8%80%E5%AE%9A%E8%A6%81%E8%A3%85"><span class="nav-number"></span> <span class="nav-text"> 五.Python3一定要装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#51%E4%BE%9D%E8%B5%96%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-number">0.1.</span> <span class="nav-text"> 5.1.依赖包安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#52%E4%B8%8B%E8%BD%BD%E5%8C%85"><span class="nav-number">0.2.</span> <span class="nav-text"> 5.2.下载包：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#53%E8%A7%A3%E5%8E%8B"><span class="nav-number">0.3.</span> <span class="nav-text"> 5.3.解压：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#54%E5%AE%89%E8%A3%85"><span class="nav-number">0.4.</span> <span class="nav-text"> 5.4.安装：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#55%E5%BB%BA%E7%AB%8B%E8%BD%AF%E8%BF%9E%E6%8E%A5"><span class="nav-number">0.5.</span> <span class="nav-text"> 5.5.建立软连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#56%E6%B5%8B%E8%AF%95%E4%B8%80%E4%B8%8Bpython3%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E7%94%A8"><span class="nav-number">0.6.</span> <span class="nav-text"> 5.6.测试一下python3是否可以用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AD%E6%97%A5%E5%B8%B8%E5%BA%9F%E8%AF%9D"><span class="nav-number">1.</span> <span class="nav-text"> 六.日常废话</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -192,7 +193,7 @@
         <a href="https://github.com/lubians" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lubians" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:ftongyu@foxmail.com" title="E-Mail → mailto:ftongyu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=ftongyu@foxmail.com" title="E-Mail → https:&#x2F;&#x2F;mail.qq.com&#x2F;cgi-bin&#x2F;qm_share?t&#x3D;qm_mailme&amp;email&#x3D;ftongyu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
         <a href="/373073314" title="QQ → 373073314"><i class="fa fa-envelope fa-fw"></i>QQ</a>
@@ -240,7 +241,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2020/01/UploadPy2andyum/">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/p/d674a3f4.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.png">
@@ -271,7 +272,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2020-01-14 11:12:28" itemprop="dateModified" datetime="2020-01-14T11:12:28+08:00">2020-01-14</time>
+      <time title="修改时间：2021-12-07 18:38:07" itemprop="dateModified" datetime="2021-12-07T18:38:07+08:00">2021-12-07</time>
     </span>
 
   
@@ -282,6 +283,7 @@
       <span class="post-meta-item-text">阅读次数：</span>
       <span id="busuanzi_value_page_pv"></span>
     </span>
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -313,53 +315,57 @@
 <p>④我开始使用yum命令安装Python3.8的相关依赖.</p>
 <p>⑤结果是发现yum不可用了,如下报错信息</p>
 <span id="more"></span>
-
-
-
-<p><img src="https://i.loli.net/2020/01/14/MAYCzBHr5gcZjNn.png" alt="2019062019501228.png"><br>网上找的截图,大概类似,服务器问题已经处理好了,不可能再删一次!_!</p>
+<p><img src="https://i.loli.net/2020/01/14/MAYCzBHr5gcZjNn.png" alt="2019062019501228.png" /><br />
+网上找的截图,大概类似,服务器问题已经处理好了,不可能再删一次!_!</p>
 <p>看到问题提示才知道是自己给自己挖了一个坑,心情一度灰暗到连晚饭都不想吃,最后?最后我就去聚餐去了,哈哈哈.</p>
-<h4 id="一-面临问题"><a href="#一-面临问题" class="headerlink" title="一.面临问题"></a>一.面临问题</h4><p>因为卸载了Python2.7不仅是yum不可用了,我的ambari集群的那台机器也一度陷入了瘫痪之中,web界面一片飘红,当时我有想通过命令</p>
+<h4 id="一面临问题"><a class="markdownIt-Anchor" href="#一面临问题"></a> 一.面临问题</h4>
+<p>因为卸载了Python2.7不仅是yum不可用了,我的ambari集群的那台机器也一度陷入了瘫痪之中,web界面一片飘红,当时我有想通过命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /*</span><br></pre></td></tr></table></figure>
-
 <p>删了那个机器的冲动.简单点说,面临的问题就是要回复原来的状态.</p>
 <p>整个思路是这样的,没有了Python2.7,我就需先把Linux服务器依赖的Python2.7的包重新安装上,再看有没有其他问题,如果没有,好万事大吉,如果有,再看提示,开始干活.</p>
 <p><strong>该处理过程也适用于 yum因python版本无法使用的问题,不同的版本类型的机器,切记把机器版本号替换一下就可以了.</strong></p>
-<h4 id="二-检查是否删除彻底"><a href="#二-检查是否删除彻底" class="headerlink" title="二.检查是否删除彻底"></a>二.检查是否删除彻底</h4><h5 id="2-1-检查Python2-7是否卸载干净了"><a href="#2-1-检查Python2-7是否卸载干净了" class="headerlink" title="2.1.检查Python2.7是否卸载干净了"></a>2.1.检查Python2.7是否卸载干净了</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">卸载python</span></span><br><span class="line">rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#删除所有残余文件</span></span></span><br><span class="line">whereis python |xargs rm -frv   </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#验证删除，返回无结果</span></span></span><br><span class="line">whereis python </span><br></pre></td></tr></table></figure>
-
-<h5 id="2-2-删除现有的yum"><a href="#2-2-删除现有的yum" class="headerlink" title="2.2.删除现有的yum"></a>2.2.删除现有的yum</h5><p>不可用了就先删掉,以防依赖出错</p>
+<h4 id="二检查是否删除彻底"><a class="markdownIt-Anchor" href="#二检查是否删除彻底"></a> 二.检查是否删除彻底</h4>
+<h5 id="21检查python27是否卸载干净了"><a class="markdownIt-Anchor" href="#21检查python27是否卸载干净了"></a> 2.1.检查Python2.7是否卸载干净了</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">卸载python</span></span><br><span class="line">rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#删除所有残余文件</span></span></span><br><span class="line">whereis python |xargs rm -frv   </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#验证删除，返回无结果</span></span></span><br><span class="line">whereis python </span><br></pre></td></tr></table></figure>
+<h5 id="22删除现有的yum"><a class="markdownIt-Anchor" href="#22删除现有的yum"></a> 2.2.删除现有的yum</h5>
+<p>不可用了就先删掉,以防依赖出错</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">删除yum</span></span><br><span class="line">rpm -qa|grep yum|xargs rpm -ev --allmatches --nodeps </span><br><span class="line"><span class="meta">#</span><span class="bash">删除残留文件</span></span><br><span class="line">whereis yum |xargs rm -frv </span><br><span class="line"><span class="meta">#</span><span class="bash">验证删除完成,返回无结果</span></span><br><span class="line">whereis yum </span><br></pre></td></tr></table></figure>
-
-<h4 id="三-下载安装恢复"><a href="#三-下载安装恢复" class="headerlink" title="三.下载安装恢复"></a>三.下载安装恢复</h4><h5 id="3-1-查看linux版本"><a href="#3-1-查看linux版本" class="headerlink" title="3.1.查看linux版本"></a>3.1.查看linux版本</h5><p>安装Python2.7的依赖包,就要找到Linux的版本号,经查我的版本号是:</p>
+<h4 id="三下载安装恢复"><a class="markdownIt-Anchor" href="#三下载安装恢复"></a> 三.下载安装恢复</h4>
+<h5 id="31查看linux版本"><a class="markdownIt-Anchor" href="#31查看linux版本"></a> 3.1.查看linux版本</h5>
+<p>安装Python2.7的依赖包,就要找到Linux的版本号,经查我的版本号是:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">命令</span></span><br><span class="line">cat /etc/redhat-release</span><br><span class="line"><span class="meta">#</span><span class="bash">版本号</span></span><br><span class="line">CentOS Linux release 7.4.1708</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-2-在官方网站找到对应的包"><a href="#3-2-在官方网站找到对应的包" class="headerlink" title="3.2.在官方网站找到对应的包"></a>3.2.在官方网站找到对应的包</h5><p>查到版本号之后我就需要从官方网站(<strong>小红帽,这里注意你的CentOS是哪个厂家的</strong>)查找所依赖的几个指定包.</p>
+<h5 id="32在官方网站找到对应的包"><a class="markdownIt-Anchor" href="#32在官方网站找到对应的包"></a> 3.2.在官方网站找到对应的包</h5>
+<p>查到版本号之后我就需要从官方网站(<strong>小红帽,这里注意你的CentOS是哪个厂家的</strong>)查找所依赖的几个指定包.</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">官方网站</span></span><br><span class="line">http://vault.centos.org</span><br><span class="line"><span class="meta">#</span><span class="bash">我的版本号的官方网站http://vault.centos.org/7.4.1708/os/x86_64/Packages/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">如下7个包</span></span><br><span class="line">python-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">python-devel-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">python-iniparse-0.4-9.el7.noarch.rpm  </span><br><span class="line">python-pycurl-7.19.0-19.el7.x86_64.rpm   </span><br><span class="line">rpm-python-4.11.3-25.el7.x86_64.rpmpython-devel-2.7.5-58.el7.x86_64.rpm  </span><br><span class="line">python-libs-2.7.5-58.el7.x86_64.rpm   </span><br><span class="line">python-urlgrabber-3.10-8.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-3-下载安装Python包"><a href="#3-3-下载安装Python包" class="headerlink" title="3.3.下载安装Python包"></a>3.3.下载安装Python包</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> python安装</span></span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-devel-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-iniparse-0.4-9.el7.noarch.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-libs-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-pycurl-7.19.0-19.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-urlgrabber-3.10-8.el7.noarch.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/rpm-python-4.11.3-25.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-4-安装指定的yum包"><a href="#3-4-安装指定的yum包" class="headerlink" title="3.4.安装指定的yum包"></a>3.4.安装指定的yum包</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum安装</span></span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-3.4.3-154.el7.centos.noarch.rpm </span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm </span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.31-42.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
-
-<h4 id="四-收尾工作"><a href="#四-收尾工作" class="headerlink" title="四.收尾工作"></a>四.收尾工作</h4><h5 id="4-1-测试是否成功"><a href="#4-1-测试是否成功" class="headerlink" title="4.1.测试是否成功"></a>4.1.测试是否成功</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">验证python</span></span><br><span class="line">python</span><br><span class="line"><span class="meta">#</span><span class="bash">验证yum</span></span><br><span class="line">yum</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-2-总结"><a href="#4-2-总结" class="headerlink" title="4.2.总结"></a>4.2.总结</h5><p>这个故事告诉我们： </p>
+<h5 id="33下载安装python包"><a class="markdownIt-Anchor" href="#33下载安装python包"></a> 3.3.下载安装Python包</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> python安装</span></span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-devel-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-iniparse-0.4-9.el7.noarch.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-libs-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-pycurl-7.19.0-19.el7.x86_64.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/python-urlgrabber-3.10-8.el7.noarch.rpm</span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/rpm-python-4.11.3-25.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<h5 id="34安装指定的yum包"><a class="markdownIt-Anchor" href="#34安装指定的yum包"></a> 3.4.安装指定的yum包</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum安装</span></span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-3.4.3-154.el7.centos.noarch.rpm </span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm </span><br><span class="line">rpm -ivh  --nodeps http://vault.centos.org/7.4.1708/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.31-42.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+<h4 id="四收尾工作"><a class="markdownIt-Anchor" href="#四收尾工作"></a> 四.收尾工作</h4>
+<h5 id="41测试是否成功"><a class="markdownIt-Anchor" href="#41测试是否成功"></a> 4.1.测试是否成功</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">验证python</span></span><br><span class="line">python</span><br><span class="line"><span class="meta">#</span><span class="bash">验证yum</span></span><br><span class="line">yum</span><br></pre></td></tr></table></figure>
+<h5 id="42总结"><a class="markdownIt-Anchor" href="#42总结"></a> 4.2.总结</h5>
+<p>这个故事告诉我们：</p>
 <p>① 在不懂的领域要多阅读相关资料,不要一开始就直接上。</p>
 <p>② 解决问题思路要清晰。</p>
-<h3 id="五-Python3一定要装"><a href="#五-Python3一定要装" class="headerlink" title="五.Python3一定要装"></a>五.Python3一定要装</h3><p>在不卸载Python2版本的同时使用Python3.*</p>
+<h3 id="五python3一定要装"><a class="markdownIt-Anchor" href="#五python3一定要装"></a> 五.Python3一定要装</h3>
+<p>在不卸载Python2版本的同时使用Python3.*</p>
 <p>环境:  centos7.4</p>
 <p>版本：python3.8</p>
-<h5 id="5-1-依赖包安装"><a href="#5-1-依赖包安装" class="headerlink" title="5.1.依赖包安装"></a>5.1.依赖包安装</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-2-下载包："><a href="#5-2-下载包：" class="headerlink" title="5.2.下载包："></a>5.2.下载包：</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载路径(里面有不同的版本)https://www.python.org/ftp/python/3.8.0/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">下载命令</span></span><br><span class="line">wget https://www.python.org/ftp/python/3.8.0/Python-3.8.tgz</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-3-解压："><a href="#5-3-解压：" class="headerlink" title="5.3.解压："></a>5.3.解压：</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Python-3.8.0.tgz</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-4-安装："><a href="#5-4-安装：" class="headerlink" title="5.4.安装："></a>5.4.安装：</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd Python-3.8.0</span><br><span class="line"><span class="meta">#</span><span class="bash">指定编译目录</span></span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line"><span class="meta">#</span><span class="bash">编译安装</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-5-建立软连接"><a href="#5-5-建立软连接" class="headerlink" title="5.5.建立软连接"></a>5.5.建立软连接</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3</span><br><span class="line">ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-6-测试一下python3是否可以用"><a href="#5-6-测试一下python3是否可以用" class="headerlink" title="5.6.测试一下python3是否可以用"></a>5.6.测试一下python3是否可以用</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3</span><br><span class="line">pip3</span><br></pre></td></tr></table></figure>
-
-<h4 id="六-日常废话"><a href="#六-日常废话" class="headerlink" title="六.日常废话"></a>六.日常废话</h4><p>今天面临这个问题类似于一个新手问题,但是在很多时候,自己不了解的情况下反而容易出这种问题.</p>
+<h5 id="51依赖包安装"><a class="markdownIt-Anchor" href="#51依赖包安装"></a> 5.1.依赖包安装</h5>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</span><br></pre></td></tr></table></figure>
+<h5 id="52下载包"><a class="markdownIt-Anchor" href="#52下载包"></a> 5.2.下载包：</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载路径(里面有不同的版本)https://www.python.org/ftp/python/3.8.0/</span></span><br><span class="line"><span class="meta">#</span><span class="bash">下载命令</span></span><br><span class="line">wget https://www.python.org/ftp/python/3.8.0/Python-3.8.tgz</span><br></pre></td></tr></table></figure>
+<h5 id="53解压"><a class="markdownIt-Anchor" href="#53解压"></a> 5.3.解压：</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Python-3.8.0.tgz</span><br></pre></td></tr></table></figure>
+<h5 id="54安装"><a class="markdownIt-Anchor" href="#54安装"></a> 5.4.安装：</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd Python-3.8.0</span><br><span class="line"><span class="meta">#</span><span class="bash">指定编译目录</span></span><br><span class="line">./configure --prefix=/usr/local/python3</span><br><span class="line"><span class="meta">#</span><span class="bash">编译安装</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h5 id="55建立软连接"><a class="markdownIt-Anchor" href="#55建立软连接"></a> 5.5.建立软连接</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/python3/bin/python3.8 /usr/bin/python3</span><br><span class="line">ln -s /usr/local/python3/bin/pip3.8 /usr/bin/pip3</span><br></pre></td></tr></table></figure>
+<h5 id="56测试一下python3是否可以用"><a class="markdownIt-Anchor" href="#56测试一下python3是否可以用"></a> 5.6.测试一下python3是否可以用</h5>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3</span><br><span class="line">pip3</span><br></pre></td></tr></table></figure>
+<h4 id="六日常废话"><a class="markdownIt-Anchor" href="#六日常废话"></a> 六.日常废话</h4>
+<p>今天面临这个问题类似于一个新手问题,但是在很多时候,自己不了解的情况下反而容易出这种问题.</p>
 <p>那么就简单说说我们遇到相关的问题的一个解决思路吧.</p>
 <p>①遇到了什么问题,先定位问题是什么.</p>
 <p>②这个问题之前我们做了什么操作引起的相关问题,因为什么导致了这个问题出现.</p>
@@ -370,7 +376,7 @@
 <p>形成以上这种思维能更好的帮助自己处理实际工作中的问题.</p>
 <p><strong>我是鲁边,2020 peace and love.</strong></p>
 <p>按例，我的个人公众号：鲁边社，欢迎关注(后台回复 [<strong>机器学习</strong>] ,获取相关学习笔记)</p>
-<p><img src="https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg" alt="avatar"></p>
+<p><img src="https://i.loli.net/2020/01/11/qrwfVFtR1SKD2bL.jpg" alt="avatar" /></p>
 
     </div>
 
@@ -380,12 +386,32 @@
 	<div>
     
         <div style="text-align:center;color: #ccc;font-size:14px;">
-            ------------- 本文结束 <i class="fa fa-heart-o"></i> 感谢您的阅读-------------
+            
+			------------- 我是鲁边 <i class="fa fa-heart-o"></i> peace and love -------------<br/>
+			END 
 		</div>
     
 	</div>
 
     <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat.jpg" alt="lubians 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.jpg" alt="lubians 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
           
 
 <div class="post-copyright">
@@ -395,7 +421,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://lubians.github.io/2020/01/UploadPy2andyum/" title="手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题">https://lubians.github.io/2020/01/UploadPy2andyum/</a>
+      <a href="https://lubians.github.io/p/d674a3f4.html" title="手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题">https://lubians.github.io/p/d674a3f4.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -430,12 +456,12 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/01/blogcreate/" rel="prev" title="0成本搭建个人技术博客和个人网站">
+                <a href="/p/292df0e9.html" rel="prev" title="0成本搭建个人技术博客和个人网站">
                   <i class="fa fa-chevron-left"></i> 0成本搭建个人技术博客和个人网站
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/01/LinuxInstallPython3/" rel="next" title="Linux下Python3的安装">
+                <a href="/p/ff2729bf.html" rel="next" title="Linux下Python3的安装">
                   Linux下Python3的安装 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
@@ -469,12 +495,14 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
+      <span>站点总字数：</span>
     <span title="站点总字数">21k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
+      <span>站点阅读时长 &asymp;</span>
     <span title="站点阅读时长">19 分钟</span>
   </span>
 </div>
@@ -508,7 +536,11 @@
 <script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
 <script src="/js/third-party/search/local-search.js"></script>
 
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.13.4/dist/mermaid.min.js","integrity":"sha256-96rwDGMWIQYB0yKGp1sKi1yrjrLPj2oT39IpbCsIrsg="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
 
 
 
@@ -516,6 +548,14 @@
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha256-9/mhQQwkpU5okPfM5l0v3LnP9xtc6JK8dKW0/WlGaUc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css" integrity="sha256-+oItviPaTmqjDhk4y4fLLUIMgRQYDV/ZyrRNvQiebWM=" crossorigin="anonymous">
+  <script class="next-config" data-name="katex" type="application/json">{"copy_tex_js":{"url":"https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.js","integrity":"sha256-etSqbSVF4+Lwe8MGk/Vanc1sR+mWv+qOG73fxWw9p94="}}</script>
+  <script src="/js/third-party/math/katex.js"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
