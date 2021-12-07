@@ -1,1055 +1,1282 @@
 <!DOCTYPE html>
-
-
 <html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lubians.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="鲁边">
+<meta property="og:url" content="https://lubians.github.io/index.html">
+<meta property="og:site_name" content="鲁边">
+<meta property="og:description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+<meta property="og:locale">
+<meta property="article:author" content="lubians">
+<meta property="article:tag" content="Hadoop,Hadoop生态圈,Java,Hive,Sqoop,Oozie,Yarn,Flume,HDFS,SqlServer,大数据,一线,数据仓库,数据建模,编程,代码,开源,IT网站,Developer,Programmer,Coder,数据分析,Spark,Kafka,Hbase,Phoenix,ES,Linux,IT技术博客,Java,Python,">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lubians.github.io/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-Hans","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>鲁边</title>
   
 
-    <head>
-      <meta charset="utf-8" />
-       
-      <meta name="keywords" content="Hadoop,Hadoop生态圈,Java,Hive,Sqoop,Oozie,Yarn,Flume,HDFS,SqlServer,大数据,一线,数据仓库,数据建模,编程,代码,开源,IT网站,Developer,Programmer,Coder,数据分析,Spark,Kafka,Hbase,Phoenix,ES,Linux,IT技术博客,Java,Python," />
-       
-      <meta name="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。" />
-      
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1"
-      />
-      <title> 鲁边</title>
-  <meta name="generator" content="hexo-theme-ayer">
-      
-      <link rel="shortcut icon" href="/favicon.ico" />
-       
-<link rel="stylesheet" href="/dist/main.css">
-
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
-      />
-      
-<link rel="stylesheet" href="/css/custom.css">
- 
-      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-       
- 
-
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
-      />
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
-
-      <!-- mermaid -->
-      
-      <style>
-        .swal2-styled.swal2-confirm {
-          font-size: 1.6rem;
-        }
-      </style>
-    </head>
-  </html>
-</html>
 
 
-<body>
-  <div id="app">
-    
-      
 
-	<!-- �������� -->
-    <main class="content on">
-      
-<section class="cover">
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover1.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">鲁边</a></h1>
-      <div id="subtitle-box">
-        
-          <span id="subtitle">面朝大海，春暖花开</span>
-        
-      </div>
-      <div>
-        
-      </div>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">鲁边</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">昨天,今天,明天</p>
   </div>
-</section>
 
-
-
-
-<!-- Subtitle -->
-
-<div id="main">
-  <section class="outer">
-  
-  
-  
-
-<div class="notice" style="margin-top:50px">
-    <i class="ri-heart-fill"></i>
-    <div class="notice-content" id="broad"></div>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
 </div>
-<script type="text/javascript">
-    fetch('https://v1.hitokoto.cn')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("broad").innerHTML = data.hitokoto;
-        })
-        .catch(console.error)
-</script>
 
-<style>
-    .notice {
-        padding: 20px;
-        border: 1px dashed #e6e6e6;
-        color: #969696;
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        background: #fbfbfb50;
-        border-radius: 10px;
-    }
 
-    .notice i {
-        float: left;
-        color: #999;
-        font-size: 16px;
-        padding-right: 10px;
-        vertical-align: middle;
-        margin-top: -2px;
-    }
 
-    .notice-content {
-        display: initial;
-        vertical-align: middle;
-    }
-</style>
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+        <li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
   
-  <article class="articles">
-    
-    
-    
-    
-    <article
-  id="post-大数据技术栈详解"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-     
-    <div class="article-meta">
-      <a href="/2021/12/ckwumoyqg000o54jd3lygco9o/" class="article-date">
-  <time datetime="2021-12-06T08:04:33.798Z" itemprop="datePublished">2021-12-06</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>大数据技术栈详解</p>
-<h3 id="一-技术栈结构"><a href="#一-技术栈结构" class="headerlink" title="一.技术栈结构"></a>一.技术栈结构</h3><p><img src="E:\博客图片\大数据技术栈\大数据技术栈.jpg" alt="大数据技术栈"></p>
-<h3 id="二-Hadoop"><a href="#二-Hadoop" class="headerlink" title="二.Hadoop"></a>二.Hadoop</h3><h4 id="1-广义Hadoop"><a href="#1-广义Hadoop" class="headerlink" title="1.广义Hadoop"></a>1.广义Hadoop</h4><p>Hadoop在广义上来说是Hadoop生态圈,包含大量用于大数据存储,管理,传输,分析计算的框架.框架描述如下图:</p>
-<p><img src="E:\博客图片\大数据技术栈\15883010-44e5e07f7bf214f2.png" alt="15883010-44e5e07f7bf214f2"></p>
-<h4 id="2-狭义Hadoop"><a href="#2-狭义Hadoop" class="headerlink" title="2.狭义Hadoop"></a>2.狭义Hadoop</h4><p>狭义上的Hadoop是一个Apache下开源的分布式系统基础框架,主要解决海量数据的存储和分析计算问题.</p>
-<p>Hadoop的组成:</p>
-<p><img src="E:\博客图片\大数据技术栈\Hadoop.png" alt="Hadoop"></p>
-<h5 id="2-1-HDFS"><a href="#2-1-HDFS" class="headerlink" title="2.1.HDFS"></a>2.1.HDFS</h5><p>Hadoop实现了一个分布式文件系统(Hadoop Distributed File System),简称HDFS.</p>
-<p>Hadoop分布式文件系统(HDFS)被设计成适合运行在通用硬件(commodity hardware)上的分布式文件系统.它和现有的分布式文件系统有很多共同点.但同时,它和其他的分布式文件系统的区别也是很明显的.</p>
-<p>HDFS是一个高度容错性的系统,适合部署在廉价的机器上.HDFS能提供高吞吐量的数据访问,非常适合大规模数据集上的应用.HDFS放宽了(relax)POSIX(可移植操作系统接口 Portable Operating System Interface of UNIX)的要求,可以以流的形式访问(Streaming access)文件系统中的数据.</p>
-<p>HDFS在最开始是作为Apache Nutch搜索引擎项目的基础架构而开发的,是Apache Hadoop Core项目的一部分.HDFS有着高容错性(fault-tolerant)的特点,并且设计用来部署在低廉的(low-cost)硬件上;而且它提供高吞吐量(high throughput)来访问应用程序的数据,适合那些有这超大数据集(large data set)的应用程序.</p>
-<h5 id="2-2-MapReduce"><a href="#2-2-MapReduce" class="headerlink" title="2.2.MapReduce"></a>2.2.MapReduce</h5><p>MapReduce是一种编程模型,其理论来自Google公司发表的三篇论文(<strong>MapReduce,BigTable,GFS</strong>)之一,主要应用于海量数据的并行计算.</p>
-<p>MapReduce可以分成<strong>Map</strong>和<strong>Reduce</strong>两部分理解.</p>
-<p>Map:映射过程,把一组数据按照某种Map函数映射成新的数据.</p>
-<p>Reduce:归约过程,把若干组映射结果进行汇总并输出.</p>
-<p>Hadoop实现了Google的MapReduce编程模型和框架,能够把应用程序分割成许多的小的工作单元,并把这些单元放到任何集群节点上执行.</p>
-<p>MapReduce是Hadoop中的一个数据运算核心模块,MapReduce通过JobClient生成任务运行文件,并在JobTracker进行调度指派TaskTracker完成任务.</p>
-<p><img src="E:\博客图片\大数据技术栈\0b55b319ebc4b745ba5d74f7c1fc1e178b821502.png" alt="0b55b319ebc4b745ba5d74f7c1fc1e178b821502"></p>
-<h5 id="2-3-Yarn"><a href="#2-3-Yarn" class="headerlink" title="2.3.Yarn"></a>2.3.Yarn</h5><p>YARN是一个资源调度平台,负责为运算程序提供服务器运算资源,相当于一个分布式的操作系统平台,而MapReduce等运算程序则相当于运行于操作系统之上的应用程序.</p>
-<p>　　YARN是Hadoop2.x版本中的一个新特性.它的出现其实是为了解决第一代MapReduce编程框架的不足,提高集群环境下的资源利用率,这些资源包括内存,磁盘,网络,IO等.Hadoop2.X 版本中重新设计的这个YARN集群,具有更好的扩展性,可用性,可靠性,向后兼容性,以 及能支持除MapReduce以外的更多分布式计算程序.</p>
-<p>Yarn的特点</p>
-<p>1.Yarn并不清楚用户提交的程序的运行机制.</p>
-<p>2.Yarn只提供运算资源的调度(用户程序向Yarn申请资源,Yarn就负责分配资源).</p>
-<p>3.Yarn中的主管角色叫ResourceManager.</p>
-<p>4.Yarn中具体提供运算资源的角色叫NodeManager.</p>
-<p>5.这样一来,Yarn其实就与运行的用户程序完全解耦,就意味着Yarn上可以运行各种类型的分布式运算程序(MapReduce只是其中的一种),比如MapReduce,Storm程序,Spark程序,Tez……</p>
-<p>6.Spark,Storm,Flink等运算框架都可以整合在Yarn上运行,只要他们各自框架中有符合Yarn规范的资源请求机制即可.</p>
-<p>7.Yarn就成为一个通用的资源调度平台,从此,企业中以前存在的各种运算集群都可以整合在一个物理集群上,提高资源利用率,方便数据共享.</p>
-<h3 id="三-集群管理"><a href="#三-集群管理" class="headerlink" title="三.集群管理"></a>三.集群管理</h3><h4 id="1-Ambari集群管理工具"><a href="#1-Ambari集群管理工具" class="headerlink" title="1.Ambari集群管理工具"></a>1.Ambari集群管理工具</h4><p>Apache Ambari是一种基于Web的工具,支持Apache Hadoop集群的创建,管理和监控.Ambari已支持大多数Hadoop组件,包括HDFS,MapReduce,Hive,Pig, Hbase,Zookeeper,Sqoop和Hcatalog等.用一句话来说,Ambari就是为了让Hadoop以及相关的大数据软件更容易使用的一个工具.</p>
-<p>Ambari 自身也是一个分布式架构的软件,主要由两部分组成:Ambari Server 和 Ambari Agent.简单来说,用户通过 Ambari Server 通知 Ambari Agent 安装对应的软件:Agent会定时地发送各个机器每个软件模块的状态给 Ambari Server,最终这些状态信息会呈现在 Ambari 的 GUI,方便用户了解到集群的各种状态,并进行相应的维护.</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
-    
- 
-    
-</article>
+  <aside class="sidebar">
 
-    
-    <article
-  id="post-hello-world"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/12/ckwumoyqe000h54jd5gjj447k/"
-    >Hello World</a> 
-</h2>
- 
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/12/ckwumoyqe000h54jd5gjj447k/" class="article-date">
-  <time datetime="2021-12-06T07:43:26.262Z" itemprop="datePublished">2021-12-06</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="lubians"
+      src="/images/touxiang.png">
+  <p class="site-author-name" itemprop="name">lubians</p>
+  <div class="site-description" itemprop="description">本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lubians" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lubians" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ftongyu@foxmail.com" title="E-Mail → mailto:ftongyu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/373073314" title="QQ → 373073314"><i class="fa fa-envelope fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/jiangdajien" title="weichat → jiangdajien"><i class="fa fa-envelope fa-fw"></i>weichat</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
   </div>
 
-    
- 
-    
-</article>
 
-    
-    <article
-  id="post-Ambari下安装oozieUI界面无法访问问题"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/oozieUse2/"
-    >安装oozie的web界面无法访问问题</a> 
-</h2>
- 
 
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/01/oozieUse2/" class="article-date">
-  <time datetime="2020-01-16T13:37:04.000Z" itemprop="datePublished">2020-01-16</time>
-</a>    
+        </div>
+      </div>
     </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/lubians" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2021/01/bdDetailInfo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/01/bdDetailInfo/" class="post-title-link" itemprop="url">大数据技术栈详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-13 18:37:04" itemprop="dateCreated datePublished" datetime="2021-01-13T18:37:04+08:00">2021-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-07 16:15:11" itemprop="dateModified" datetime="2021-12-07T16:15:11+08:00">2021-12-07</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="一-技术栈结构"><a href="#一-技术栈结构" class="headerlink" title="一.技术栈结构"></a>一.技术栈结构</h3><p><img src="E:\博客图片\大数据技术栈\大数据技术栈.jpg" alt="大数据技术栈"></p>
+<h3 id="二-Hadoop"><a href="#二-Hadoop" class="headerlink" title="二.Hadoop"></a>二.Hadoop</h3><h4 id="1-广义Hadoop"><a href="#1-广义Hadoop" class="headerlink" title="1.广义Hadoop"></a>1.广义Hadoop</h4><p>Hadoop在广义上来说是Hadoop生态圈,包含大量用于大数据存储,管理,传输,分析计算的框架.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/bdDetailInfo/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h4 id="前言"><a href="#前言" class="headerlink" title="前言:"></a>前言:</h4><p>我用的是Ambari管理集群<br><strong>其他集群管理工具安装oozie和手动编译安装oozie,关于oozie的UI界面无法访问的问题,大致和该方法类似.</strong></p>
+    </div>
+
+    
+    
+    
+	<div>
+    
+	</div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2020/01/oozieUse2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/oozieUse2/" class="post-title-link" itemprop="url">安装oozie的web界面无法访问问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-01-16 21:37:04 / 修改时间：21:21:34" itemprop="dateCreated datePublished" datetime="2020-01-16T21:37:04+08:00">2020-01-16</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言:"></a>前言:</h4><p>我用的是Ambari管理集群<br><strong>其他集群管理工具安装oozie和手动编译安装oozie,关于oozie的UI界面无法访问的问题,大致和该方法类似.</strong></p>
 <p>找到下面4步骤里的视图显示的目录,有一个ext-2.2软链指向的路径</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lrwxrwxrwx 1 oozie hadoop        41 Dec 12  2018 ext-2.2 -&gt; /usr/hdp/3.0.1.0-187/oozie/libext/ext-2.2 </span><br></pre></td></tr></table></figure>
 
-<p>将之前的下载的安装包放到该路径就可以了</p> 
-      <a class="article-more-link" href="/2020/01/oozieUse2/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
+<p>将之前的下载的安装包放到该路径就可以了</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/oozieUse2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
-    
 
-    <!-- copyright -->
     
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oozie/" rel="tag">oozie</a></li></ul>
+    
+    
+	<div>
+    
+	</div>
 
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
+  </article>
+</div>
+
+
+
 
     
- 
-    
-</article>
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2020/01/oozieUse1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/oozieUse1/" class="post-title-link" itemprop="url">Oozie任务调度框架详解及使用简介(一)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-14 21:37:04" itemprop="dateCreated datePublished" datetime="2020-01-14T21:37:04+08:00">2020-01-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-06 21:32:43" itemprop="dateModified" datetime="2021-12-06T21:32:43+08:00">2021-12-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Oozie/" itemprop="url" rel="index"><span itemprop="name">Oozie</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
 
     
-    <article
-  id="post-Oozie任务调度框架详解及使用简介(一)"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
     
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/oozieUse1/"
-    >Oozie任务调度框架详解及使用简介(一)</a> 
-</h2>
- 
-
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>摘要:个人最近一段时间一直在使用oozie,从刚开始的各种别扭到现在越来越觉得有意思的情况下,想整理一下关于oozie的认知,整理出来一个oozie系列,本来市面上关于oozie的资料就比较少,希望写完后能形成自己对oozie的独特理解和加强整体性的把握.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/oozieUse1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/01/oozieUse1/" class="article-date">
-  <time datetime="2020-01-14T13:37:04.000Z" itemprop="datePublished">2020-01-14</time>
-</a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>摘要:个人最近一段时间一直在使用oozie,从刚开始的各种别扭到现在越来越觉得有意思的情况下,想整理一下关于oozie的认知,整理出来一个oozie系列,本来市面上关于oozie的资料就比较少,希望写完后能形成自己对oozie的独特理解和加强整体性的把握.</p> 
-      <a class="article-more-link" href="/2020/01/oozieUse1/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
 
-    <!-- copyright -->
     
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hadoop/" rel="tag">hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oozie/" rel="tag">oozie</a></li></ul>
+    
+    
+	<div>
+    
+	</div>
 
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
+  </article>
+</div>
+
+
+
 
     
- 
-    
-</article>
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2020/01/LinuxInstallPython3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/LinuxInstallPython3/" class="post-title-link" itemprop="url">Linux下Python3的安装</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-13 21:37:04" itemprop="dateCreated datePublished" datetime="2020-01-13T21:37:04+08:00">2020-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-01-14 11:03:49" itemprop="dateModified" datetime="2020-01-14T11:03:49+08:00">2020-01-14</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>672</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
 
     
-    <article
-  id="post-Linux下Python3的安装"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
     
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/LinuxInstallPython3/"
-    >Linux下Python3的安装</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/01/LinuxInstallPython3/" class="article-date">
-  <time datetime="2020-01-13T13:37:04.000Z" itemprop="datePublished">2020-01-13</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>在不卸载Python2版本的同时使用Python3.*<br><strong>切勿删除Python2,不然会出问题</strong></p>
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在不卸载Python2版本的同时使用Python3.*<br><strong>切勿删除Python2,不然会出问题</strong></p>
 <p>参考这篇文章 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/lubians/p/12190667.html">手抖把Python2.7卸载了,导致了自己的yum不可用</a></p>
-<p>环境:  centos7.4<br>版本：python3.8</p> 
-      <a class="article-more-link" href="/2020/01/LinuxInstallPython3/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
+<p>环境:  centos7.4<br>版本：python3.8</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/LinuxInstallPython3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
-    
 
-    <!-- copyright -->
     
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python3/" rel="tag">Python3</a></li></ul>
+    
+    
+	<div>
+    
+	</div>
 
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
+  </article>
+</div>
+
+
+
 
     
- 
-    
-</article>
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2020/01/UploadPy2andyum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/UploadPy2andyum/" class="post-title-link" itemprop="url">手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-13 18:37:04" itemprop="dateCreated datePublished" datetime="2020-01-13T18:37:04+08:00">2020-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-01-14 11:12:28" itemprop="dateModified" datetime="2020-01-14T11:12:28+08:00">2020-01-14</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
 
     
-    <article
-  id="post-手抖把Python2.7卸载了,导致了自己的yum不可用以及yum因python版本无法使用的问题"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
     
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/UploadPy2andyum/"
-    >手抖把Python2.7卸载了导致了自己的yum不可用以及yum因python版本无法使用的问题</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/01/UploadPy2andyum/" class="article-date">
-  <time datetime="2020-01-13T10:37:04.000Z" itemprop="datePublished">2020-01-13</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><strong>摘要:</strong></p>
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>摘要:</strong></p>
 <p>从标题就能看到我有多心如死灰了,简单介绍下我是如何自残的过程.</p>
 <p>①首先因为需要部署爬虫程序,然后安装Python3.</p>
 <p>②Python3系列和Python2系列版本不向下兼容,所以我就卸载了机器自带的Python2.7,删的干干净净.</p>
 <p>③然后我下载了Python3.8的包.</p>
 <p>④我开始使用yum命令安装Python3.8的相关依赖.</p>
-<p>⑤结果是发现yum不可用了,如下报错信息</p> 
-      <a class="article-more-link" href="/2020/01/UploadPy2andyum/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
+<p>⑤结果是发现yum不可用了,如下报错信息</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/UploadPy2andyum/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
-    
 
-    <!-- copyright -->
     
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python2/" rel="tag">Python2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python3/" rel="tag">Python3</a></li></ul>
+    
+    
+	<div>
+    
+	</div>
 
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
+  </article>
+</div>
+
+
+
 
     
- 
-    
-</article>
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2020/01/blogcreate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/blogcreate/" class="post-title-link" itemprop="url">0成本搭建个人技术博客和个人网站</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-11 21:37:04" itemprop="dateCreated datePublished" datetime="2020-01-11T21:37:04+08:00">2020-01-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-01-12 00:20:20" itemprop="dateModified" datetime="2020-01-12T00:20:20+08:00">2020-01-12</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
 
     
-    <article
-  id="post-0成本搭建个人技术博客和个人网站"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
     
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/blogcreate/"
-    >0成本搭建个人技术博客和个人网站</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/01/blogcreate/" class="article-date">
-  <time datetime="2020-01-11T13:37:04.000Z" itemprop="datePublished">2020-01-11</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>摘要:</p>
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>摘要:</p>
 <p>首先送上我的个人博客先睹为快</p>
 <p><a href="https://lubians.github.io/">鲁边的个人博客</a></p>
-<p>说说搭建个人博客的初衷,前段时间发现自己在博客网站上的文章配图没了,感觉很不可思议,就萌生了这样的想法,但真正驱使我去行动起来的原因是,最近有一次我发表了一篇文章,结果还要审核,最后告诉我审核不通过,好吧,我换了一个博客发表,结果给我封号了,封号了,心情一时难以言表.于是愤而起身,决定亲自搭建一个博客.</p> 
-      <a class="article-more-link" href="/2020/01/blogcreate/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
+<p>说说搭建个人博客的初衷,前段时间发现自己在博客网站上的文章配图没了,感觉很不可思议,就萌生了这样的想法,但真正驱使我去行动起来的原因是,最近有一次我发表了一篇文章,结果还要审核,最后告诉我审核不通过,好吧,我换了一个博客发表,结果给我封号了,封号了,心情一时难以言表.于是愤而起身,决定亲自搭建一个博客.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/blogcreate/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
-    
 
-    <!-- copyright -->
     
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%94%BB%E7%95%A5/" rel="tag">攻略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    
+    
+	<div>
+    
+	</div>
 
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
+  </article>
+</div>
+
+
+
 
     
- 
-    
-</article>
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2020/01/ideagonglve/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/ideagonglve/" class="post-title-link" itemprop="url">最新IDEA永久激活攻略</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-08 21:37:04" itemprop="dateCreated datePublished" datetime="2020-01-08T21:37:04+08:00">2020-01-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-01-11 15:28:06" itemprop="dateModified" datetime="2020-01-11T15:28:06+08:00">2020-01-11</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
 
     
-    <article
-  id="post-最新IDEA永久激活攻略"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
     
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/ideagonglve/"
-    >最新IDEA永久激活攻略</a> 
-</h2>
- 
-
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>写这篇文章的原因是我最近想自己写两个项目,却发现自己的IDEA过期了,对,就是那个JAVA编辑器,于是研究了一下IDEA的激活.发现网上的攻略大多数不可用.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/ideagonglve/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/01/ideagonglve/" class="article-date">
-  <time datetime="2020-01-08T13:37:04.000Z" itemprop="datePublished">2020-01-08</time>
-</a>    
     </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>写这篇文章的原因是我最近想自己写两个项目,却发现自己的IDEA过期了,对,就是那个JAVA编辑器,于是研究了一下IDEA的激活.发现网上的攻略大多数不可用.</p> 
-      <a class="article-more-link" href="/2020/01/ideagonglve/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
 
-    <!-- copyright -->
     
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%94%BB%E7%95%A5/" rel="tag">攻略</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
+    
+    
+	<div>
+    
+	</div>
 
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
+  </article>
+</div>
+
+
+
 
     
- 
-    
-</article>
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2020/01/HelloWorld/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/01/HelloWorld/" class="post-title-link" itemprop="url">nihaoya</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-02 13:26:02" itemprop="dateCreated datePublished" datetime="2020-01-02T13:26:02+08:00">2020-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-01-11 03:05:27" itemprop="dateModified" datetime="2020-01-11T03:05:27+08:00">2020-01-11</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>11</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
 
     
-    <article
-  id="post-nihao"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
     
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/01/HelloWorld/"
-    >nihaoya</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/01/HelloWorld/" class="article-date">
-  <time datetime="2020-01-02T05:26:02.000Z" itemprop="datePublished">2020-01-02</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <span id="more"></span>
+    
+    <div class="post-body" itemprop="articleBody">
+          <span id="more"></span>
 
 <p>nihaohahahh</p>
- 
-      <!-- reward -->
+
       
     </div>
-    
 
-    <!-- copyright -->
     
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%85%E8%A1%8C/" rel="tag">旅行</a></li></ul>
+    
+    
+	<div>
+    
+	</div>
 
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-didi"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/12/lubians/"
-    >个人简介</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/12/lubians/" class="article-date">
-  <time datetime="2019-12-03T05:26:02.000Z" itemprop="datePublished">2019-12-03</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h5 id="王晓东"><a href="#王晓东" class="headerlink" title="王晓东"></a>王晓东</h5><p>身高八尺有余</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
   
 
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2019/12/lubians/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/12/lubians/" class="post-title-link" itemprop="url">个人简介</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-03 13:26:02" itemprop="dateCreated datePublished" datetime="2019-12-03T13:26:02+08:00">2019-12-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-01-11 02:01:31" itemprop="dateModified" datetime="2020-01-11T02:01:31+08:00">2020-01-11</time>
+    </span>
+
   
-  <nav class="page-nav">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>9</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h5 id="王晓东"><a href="#王晓东" class="headerlink" title="王晓东"></a>王晓东</h5><p>身高八尺有余</p>
+
+      
+    </div>
+
+    
+    
+    
+	<div>
+    
+	</div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2019/01/about/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/01/about/" class="post-title-link" itemprop="url">关于我</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-01-02 21:37:04" itemprop="dateCreated datePublished" datetime="2019-01-02T21:37:04+08:00">2019-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-07 12:48:51" itemprop="dateModified" datetime="2021-12-07T12:48:51+08:00">2021-12-07</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>226</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>A Coder, live in Beijing, China.</p>
+<p>与其坐而论道,不如起而行之</p>
+</blockquote>
+<p>GitHub: <a target="_blank" rel="noopener" href="https://github.com/lubians">lubians</a><br>Email: <a href="mailto:&#x66;&#x74;&#x6f;&#x6e;&#103;&#x79;&#117;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#x66;&#x74;&#x6f;&#x6e;&#103;&#x79;&#117;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a><br>QQ: <a target="_blank" rel="noopener" href="http://wpa.qq.com/msgrd?v=3&uin=373073314&site=qq&menu=yes">373073314</a><br>微信: jiangdajien</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/01/about/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+	<div>
+    
+	</div>
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lubians</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">21k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
   
-</section>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
-      <footer class="footer">
-  <div class="outer">
-    <ul>
-      <li>
-        Copyrights &copy;
-        2015-2021
-        <i class="ri-heart-fill heart_icon"></i> lubians
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-        
-        <span>
-  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
-  <span class="division">|</span>
-  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
-</span>
-        
-      </li>
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      <li>
-        <!-- cnzz统计 -->
-        
-      </li>
-    </ul>
-  </div>
-</footer>    
-    </main>
-    <div class="float_btns">
-      <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
-</div>
-
-    </div>
-    <aside class="sidebar on">
-      <button class="navbar-toggle"></button>
-<nav class="navbar">
   
-  <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="鲁边"></a>
-  </div>
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
   
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">目录</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/2019/01/about/">关于我</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-      <a class="nav-item-link nav-item-search"  title="Search">
-        <i class="ri-search-line"></i>
-      </a>
-      
-      
-      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
-        <i class="ri-rss-line"></i>
-      </a>
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-    </aside>
-    <div id="mask"></div>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
-  <div class="reward-box">
-    
-    <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
-    
-  </div>
-</div>
-    
-<script src="/js/jquery-3.6.0.min.js"></script>
- 
-<script src="/js/lazyload.min.js"></script>
 
-<!-- Tocbot -->
 
-<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
-/>
-<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
 
-<script src="/dist/main.js"></script>
-
-<!-- ImageViewer -->
- <!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
 <script>
-    function viewer_init() {
-        let pswpElement = document.querySelectorAll('.pswp')[0];
-        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-        $imgArr.forEach(($em, i) => {
-            $em.onclick = () => {
-                // slider展开状态
-                // todo: 这样不好，后面改成状态
-                if (document.querySelector('.left-col.show')) return
-                let items = []
-                $imgArr.forEach(($em2, i2) => {
-                    let img = $em2.getAttribute('data-idx', i2)
-                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-                    let title = $em2.getAttribute('alt')
-                    // 获得原图尺寸
-                    const image = new Image()
-                    image.src = src
-                    items.push({
-                        src: src,
-                        w: image.width || $em2.width,
-                        h: image.height || $em2.height,
-                        title: title
-                    })
-                })
-                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-                    index: parseInt(i)
-                });
-                gallery.init()
-            }
-        })
-    }
-    viewer_init()
-</script> 
-<!-- MathJax -->
-
-<!-- Katex -->
-
-<!-- busuanzi  -->
- 
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
- 
-<!-- ClickLove -->
-
-<!-- ClickBoom1 -->
-
-<!-- ClickBoom2 -->
-
-<!-- CodeCopy -->
- 
-<link rel="stylesheet" href="/css/clipboard.css">
- <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-<script>
-  function wait(callback, seconds) {
-    var timelag = null;
-    timelag = window.setTimeout(callback, seconds);
-  }
-  !function (e, t, a) {
-    var initCopyCode = function(){
-      var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
-      copyHtml += '</button>';
-      $(".highlight .code pre").before(copyHtml);
-      $(".article pre code").before(copyHtml);
-      var clipboard = new ClipboardJS('.btn-copy', {
-        target: function(trigger) {
-          return trigger.nextElementSibling;
-        }
-      });
-      clipboard.on('success', function(e) {
-        let $btn = $(e.trigger);
-        $btn.addClass('copied');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-checkbox-circle-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPIED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-checkbox-circle-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-      clipboard.on('error', function(e) {
-        e.clearSelection();
-        let $btn = $(e.trigger);
-        $btn.addClass('copy-failed');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-time-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPY FAILED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-time-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-    }
-    initCopyCode();
-  }(window, document);
-</script>
- 
-<!-- CanvasBackground -->
-
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({ theme: "forest" });
-  }
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: false,
+  label: '🌓',
+  autoMatchOsTheme: false
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
 </script>
 
-
-    
-    
-
-  </div>
 </body>
-
 </html>

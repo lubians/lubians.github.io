@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lubians.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="一.技术栈结构 二.Hadoop1.广义HadoopHadoop在广义上来说是Hadoop生态圈,包含大量用于大数据存储,管理,传输,分析计算的框架.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据技术栈详解">
+<meta property="og:url" content="https://lubians.github.io/2021/01/bdDetailInfo/index.html">
+<meta property="og:site_name" content="鲁边">
+<meta property="og:description" content="一.技术栈结构 二.Hadoop1.广义HadoopHadoop在广义上来说是Hadoop生态圈,包含大量用于大数据存储,管理,传输,分析计算的框架.">
+<meta property="og:locale">
+<meta property="og:image" content="e:/博客图片/大数据技术栈/大数据技术栈.jpg">
+<meta property="og:image" content="e:/博客图片/大数据技术栈/15883010-44e5e07f7bf214f2.png">
+<meta property="og:image" content="e:/博客图片/大数据技术栈/Hadoop.png">
+<meta property="og:image" content="e:/博客图片/大数据技术栈/0b55b319ebc4b745ba5d74f7c1fc1e178b821502.png">
+<meta property="article:published_time" content="2021-01-13T10:37:04.000Z">
+<meta property="article:modified_time" content="2021-12-07T08:15:11.417Z">
+<meta property="article:author" content="lubians">
+<meta property="article:tag" content="hadoop">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="e:/博客图片/大数据技术栈/大数据技术栈.jpg">
+
+
+<link rel="canonical" href="https://lubians.github.io/2021/01/bdDetailInfo/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://lubians.github.io/2021/01/bdDetailInfo/","path":"2021/01/bdDetailInfo/","title":"大数据技术栈详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>大数据技术栈详解 | 鲁边</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">鲁边</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">昨天,今天,明天</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+        <li class="menu-item menu-item-commonweal"><a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E6%8A%80%E6%9C%AF%E6%A0%88%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">一.技术栈结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-Hadoop"><span class="nav-number">2.</span> <span class="nav-text">二.Hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%B9%BF%E4%B9%89Hadoop"><span class="nav-number">2.1.</span> <span class="nav-text">1.广义Hadoop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%8B%AD%E4%B9%89Hadoop"><span class="nav-number">2.2.</span> <span class="nav-text">2.狭义Hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-HDFS"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1.HDFS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-MapReduce"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.MapReduce</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-Yarn"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3.Yarn</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">三.集群管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Ambari%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">3.1.</span> <span class="nav-text">1.Ambari集群管理工具</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="lubians"
+      src="/images/touxiang.png">
+  <p class="site-author-name" itemprop="name">lubians</p>
+  <div class="site-description" itemprop="description">本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lubians" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lubians" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:ftongyu@foxmail.com" title="E-Mail → mailto:ftongyu@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/373073314" title="QQ → 373073314"><i class="fa fa-envelope fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/jiangdajien" title="weichat → jiangdajien"><i class="fa fa-envelope fa-fw"></i>weichat</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/lubians" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://lubians.github.io/2021/01/bdDetailInfo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="lubians">
+      <meta itemprop="description" content="本站是鲁边的技术分享博客。内容涵盖Hadoop生态圈、Java、Hive、Sqoop、Oozie、Yarn、HDFS、Flume、数据仓库、数据建模、数据分析、Spark、Kafka、Hbase、Phoenix、ES、Linux等相关的研究与知识分享。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鲁边">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大数据技术栈详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-13 18:37:04" itemprop="dateCreated datePublished" datetime="2021-01-13T18:37:04+08:00">2021-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-07 16:15:11" itemprop="dateModified" datetime="2021-12-07T16:15:11+08:00">2021-12-07</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="一-技术栈结构"><a href="#一-技术栈结构" class="headerlink" title="一.技术栈结构"></a>一.技术栈结构</h3><p><img src="E:\博客图片\大数据技术栈\大数据技术栈.jpg" alt="大数据技术栈"></p>
+<h3 id="二-Hadoop"><a href="#二-Hadoop" class="headerlink" title="二.Hadoop"></a>二.Hadoop</h3><h4 id="1-广义Hadoop"><a href="#1-广义Hadoop" class="headerlink" title="1.广义Hadoop"></a>1.广义Hadoop</h4><p>Hadoop在广义上来说是Hadoop生态圈,包含大量用于大数据存储,管理,传输,分析计算的框架.</p>
+<span id="more"></span>
+
+<p>框架描述如下图:</p>
+<p><img src="E:\博客图片\大数据技术栈\15883010-44e5e07f7bf214f2.png" alt="15883010-44e5e07f7bf214f2"></p>
+<h4 id="2-狭义Hadoop"><a href="#2-狭义Hadoop" class="headerlink" title="2.狭义Hadoop"></a>2.狭义Hadoop</h4><p>狭义上的Hadoop是一个Apache下开源的分布式系统基础框架,主要解决海量数据的存储和分析计算问题.</p>
+<p>Hadoop的组成:</p>
+<p><img src="E:\博客图片\大数据技术栈\Hadoop.png" alt="Hadoop"></p>
+<h5 id="2-1-HDFS"><a href="#2-1-HDFS" class="headerlink" title="2.1.HDFS"></a>2.1.HDFS</h5><p>Hadoop实现了一个分布式文件系统(Hadoop Distributed File System),简称HDFS.</p>
+<p>Hadoop分布式文件系统(HDFS)被设计成适合运行在通用硬件(commodity hardware)上的分布式文件系统.它和现有的分布式文件系统有很多共同点.但同时,它和其他的分布式文件系统的区别也是很明显的.</p>
+<p>HDFS是一个高度容错性的系统,适合部署在廉价的机器上.HDFS能提供高吞吐量的数据访问,非常适合大规模数据集上的应用.HDFS放宽了(relax)POSIX(可移植操作系统接口 Portable Operating System Interface of UNIX)的要求,可以以流的形式访问(Streaming access)文件系统中的数据.</p>
+<p>HDFS在最开始是作为Apache Nutch搜索引擎项目的基础架构而开发的,是Apache Hadoop Core项目的一部分.HDFS有着高容错性(fault-tolerant)的特点,并且设计用来部署在低廉的(low-cost)硬件上;而且它提供高吞吐量(high throughput)来访问应用程序的数据,适合那些有这超大数据集(large data set)的应用程序.</p>
+<h5 id="2-2-MapReduce"><a href="#2-2-MapReduce" class="headerlink" title="2.2.MapReduce"></a>2.2.MapReduce</h5><p>MapReduce是一种编程模型,其理论来自Google公司发表的三篇论文(<strong>MapReduce,BigTable,GFS</strong>)之一,主要应用于海量数据的并行计算.</p>
+<p>MapReduce可以分成<strong>Map</strong>和<strong>Reduce</strong>两部分理解.</p>
+<p>Map:映射过程,把一组数据按照某种Map函数映射成新的数据.</p>
+<p>Reduce:归约过程,把若干组映射结果进行汇总并输出.</p>
+<p>Hadoop实现了Google的MapReduce编程模型和框架,能够把应用程序分割成许多的小的工作单元,并把这些单元放到任何集群节点上执行.</p>
+<p>MapReduce是Hadoop中的一个数据运算核心模块,MapReduce通过JobClient生成任务运行文件,并在JobTracker进行调度指派TaskTracker完成任务.</p>
+<p><img src="E:\博客图片\大数据技术栈\0b55b319ebc4b745ba5d74f7c1fc1e178b821502.png" alt="0b55b319ebc4b745ba5d74f7c1fc1e178b821502"></p>
+<h5 id="2-3-Yarn"><a href="#2-3-Yarn" class="headerlink" title="2.3.Yarn"></a>2.3.Yarn</h5><p>YARN是一个资源调度平台,负责为运算程序提供服务器运算资源,相当于一个分布式的操作系统平台,而MapReduce等运算程序则相当于运行于操作系统之上的应用程序.</p>
+<p>　　YARN是Hadoop2.x版本中的一个新特性.它的出现其实是为了解决第一代MapReduce编程框架的不足,提高集群环境下的资源利用率,这些资源包括内存,磁盘,网络,IO等.Hadoop2.X 版本中重新设计的这个YARN集群,具有更好的扩展性,可用性,可靠性,向后兼容性,以 及能支持除MapReduce以外的更多分布式计算程序.</p>
+<p>Yarn的特点</p>
+<p>1.Yarn并不清楚用户提交的程序的运行机制.</p>
+<p>2.Yarn只提供运算资源的调度(用户程序向Yarn申请资源,Yarn就负责分配资源).</p>
+<p>3.Yarn中的主管角色叫ResourceManager.</p>
+<p>4.Yarn中具体提供运算资源的角色叫NodeManager.</p>
+<p>5.这样一来,Yarn其实就与运行的用户程序完全解耦,就意味着Yarn上可以运行各种类型的分布式运算程序(MapReduce只是其中的一种),比如MapReduce,Storm程序,Spark程序,Tez……</p>
+<p>6.Spark,Storm,Flink等运算框架都可以整合在Yarn上运行,只要他们各自框架中有符合Yarn规范的资源请求机制即可.</p>
+<p>7.Yarn就成为一个通用的资源调度平台,从此,企业中以前存在的各种运算集群都可以整合在一个物理集群上,提高资源利用率,方便数据共享.</p>
+<h3 id="三-集群管理"><a href="#三-集群管理" class="headerlink" title="三.集群管理"></a>三.集群管理</h3><h4 id="1-Ambari集群管理工具"><a href="#1-Ambari集群管理工具" class="headerlink" title="1.Ambari集群管理工具"></a>1.Ambari集群管理工具</h4><p>Apache Ambari是一种基于Web的工具,支持Apache Hadoop集群的创建,管理和监控.Ambari已支持大多数Hadoop组件,包括HDFS,MapReduce,Hive,Pig, Hbase,Zookeeper,Sqoop和Hcatalog等.用一句话来说,Ambari就是为了让Hadoop以及相关的大数据软件更容易使用的一个工具.</p>
+<p>Ambari 自身也是一个分布式架构的软件,主要由两部分组成:Ambari Server 和 Ambari Agent.简单来说,用户通过 Ambari Server 通知 Ambari Agent 安装对应的软件:Agent会定时地发送各个机器每个软件模块的状态给 Ambari Server,最终这些状态信息会呈现在 Ambari 的 GUI,方便用户了解到集群的各种状态,并进行相应的维护.</p>
+
+    </div>
+
+    
+    
+    
+	<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            ------------- 本文结束 <i class="fa fa-heart-o"></i> 感谢您的阅读-------------
+		</div>
+    
+	</div>
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>lubians
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://lubians.github.io/2021/01/bdDetailInfo/" title="大数据技术栈详解">https://lubians.github.io/2021/01/bdDetailInfo/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/hadoop/" rel="tag"># hadoop</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/01/oozieUse2/" rel="prev" title="安装oozie的web界面无法访问问题">
+                  <i class="fa fa-chevron-left"></i> 安装oozie的web界面无法访问问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lubians</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">21k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: false,
+  label: '🌓',
+  autoMatchOsTheme: false
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
